@@ -1,0 +1,48 @@
+body {
+	background-color: #222222;
+	color: white;
+}
+
+div {
+	display: inline-block;
+}
+
+.tile {
+	display: block;
+	float:left;
+	width:64px;
+	height:64px;
+	border:2px solid #444444;
+	font-size:64px;
+	text-align:center;
+}
+
+.clear {
+	width:100%;
+	height: 0px;
+	clear:both;
+}
+
+/* I wanted to style the buttons, but feel free to improve anything I did */
+
+textarea {
+	background-color:#EEEEFF;
+	border:2px solid #DDDDEE;
+}
+
+.btn-success, .btn-danger {
+	padding:5px 15px 5px 15px;/*Top right bottom left*/
+	background-color: black;
+	color:white;
+	border: 2px solid #333333;
+	margin-left:5px;
+}
+.btn-success {	
+	background-color: #55CC55;
+	border-color: #33BB33;
+}
+.btn-danger {	
+	background-color: #DD5555;
+	border-color: #FF3333;
+}
+
