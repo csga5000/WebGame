@@ -28,7 +28,7 @@ function submitLevel(){
 		}
 		//If it's not an 'empty' character
 		else if(c != '.') {
-			output += '<div class="tile">' + c + '</div>';
+			output += '<div class="tile"' + (c === '☺' || c === 'P' ? 'tabindex="4">' : '>') + c + '</div>';
 		}
 		//Empty Char
 		else {
