@@ -21,21 +21,31 @@ function submitLevel(){
 	for(var i = 0; i < content.length; i++) {
 		var c = content.charAt(i);
 
-		//If it's a newline
-		if (c === '\n') {
-			output += '<br>';
+		switch(c) {
+ 	   	case '\n':
+    	   	output += '<br>';
 			y++;
+      	  	break;
+    	case 'D':
+    	case 'd':
+    		output += '<img class = "tile" src="objectImages/door.png">'; 
+    		x++;
+    		break;
+    	case 'W': 
+    	case 'w':
+    		output += '<img class = "tile" src="objectImages/brick.png">'; 
+    		x++;
+    		break;
+    	case 'T':
+    	case 't':
+    		output += '<img class = "tile" src="objectImages/tree1.png">'; 
+    		x++;
+    		break;
+    	case ' ':
+    	default:
+        	output += '<img class = "tile" src="objectImages/blank.png">'; 
+			x++;
 		}
-		//If it's not an 'empty' character
-		else if(c != '.') {
-			output += '<div class="tile"' + (c === '☺' || c === 'P' ? 'tabindex="4">' : '>') + c + '</div>';
-		}
-		//Empty Char
-		else {
-			output += '<div class="tile"></div>';
-		}
-
-		x++;
 	}
 	$('#beforeDisplay').after(display);
 	$('#display').html(output);
