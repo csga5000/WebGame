@@ -1,0 +1,17 @@
+git status
+  - Shows status
+  		(Green is added and will be commited, red is just a change won't be saved)
+git diff
+  - shows changes
+git add <filename>
+  - adds a file
+
+THREE IMPORTANT ONES
+git add -A
+  - Adds all types of changes
+git commit -m 'Message here'
+  - Stores changes locally
+git push origin master
+  - Stores your commits to the internet repository
+
+git pull origin master
