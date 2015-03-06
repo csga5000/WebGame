@@ -13,7 +13,15 @@
 		<script src="jquery-2.1.3.min.js"></script>
 		<script src="script.js"></script>
 	</head>
-	
+	<style> 
+		#display {
+			float: right; 
+			float: top; 
+		}
+		#beforeDisplay {
+			float: left; 
+		}
+	</style> 
 	<body>
 		
 		<div id="getContent">
@@ -23,6 +31,7 @@
 			<textarea id="map" rows="24" cols="79" tabindex="0"></textarea> <br>
 			<button class="btn-success" onclick="submitLevel()" style="float:right;" tabindex="2">Submit</button>
 			<button class="btn-danger" onclick="" style="float:right;" tabindex="1">Clear</button>
+			
 		</div>
 		<div id="beforeDisplay" class="clear"></div>
 		<div id="display">

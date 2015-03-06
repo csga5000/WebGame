@@ -41,7 +41,7 @@ function submitLevel(){
     		output += '<img class = "tile" src="objectImages/tree1.png">'; 
     		x++;
     		break;
-    	case ' ':
+    	case '.':
     	default:
         	output += '<img class = "tile" src="objectImages/blank.png">'; 
 			x++;
@@ -49,4 +49,5 @@ function submitLevel(){
 	}
 	$('#beforeDisplay').after(display);
 	$('#display').html(output);
+	add = $('#getContent').remove();
 }
