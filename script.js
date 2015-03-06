@@ -2,6 +2,8 @@
 var add;
 var display;
 
+var objs = [];
+
 //The function I created gets called when the page is loaded
 $(document).ready(function(){
 	display = $('#display').remove();
@@ -21,22 +23,16 @@ function submitLevel(){
 	for(var i = 0; i < content.length; i++) {
 		var c = content.charAt(i);
 
-		//If it's a newline
-		if (c === '\n') {
-			output += '<br>';
+		if (c === "\n") {
 			y++;
-		}
-		//If it's not an 'empty' character
-		else if(c != '.') {
-			output += '<div class="tile"' + (c === '☺' || c === 'P' ? 'tabindex="4">' : '>') + c + '</div>';
-		}
-		//Empty Char
-		else {
-			output += '<div class="tile"></div>';
-		}
+			continue;
+		} 
+
+		objs.push(new GameObj(x,y,c));
 
 		x++;
 	}
+
 	$('#beforeDisplay').after(display);
 	$('#display').html(output);
 }
