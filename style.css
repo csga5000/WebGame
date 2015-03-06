@@ -7,6 +7,12 @@ div {
 	display: inline-block;
 }
 
+#backButton {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
 .tile {
 	display: inline-block;
 	float:left;
