@@ -7,14 +7,20 @@ div {
 	display: inline-block;
 }
 
+#backButton {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
 .tile {
-	display: block;
+	display: inline-block;
 	float:left;
-	width:64px;
-	height:64px;
-	border:2px solid #444444;
+	width:32px;
+	height:32px;
+	/*border:2px solid #444444;
 	font-size:64px;
-	text-align:center;
+	text-align:center;*/
 }
 
 div:focus {

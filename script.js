@@ -1,5 +1,5 @@
 //Variable declarations
-var add;
+var mapMaker;
 var display;
 
 var objs = [];
@@ -35,4 +35,12 @@ function submitLevel(){
 
 	$('#beforeDisplay').after(display);
 	$('#display').html(output);
+	//This will remove text area
+	mapMaker = $('#getContent').remove();
+	$('#display').after('<button id="backButton" class="btn-success" onclick="backButton()">text</button>');
+}
+
+function backButton() {
+	$('#beforeDisplay').before(mapMaker);
+	$('#backButton').remove();
 }
