@@ -72,3 +72,8 @@ function keyUp(event) {
 	//ARROWS: LTRB - 37, 38, 39, 40
 	//WASD: 87, 68, 83, 65
 }
+
+function clear() {
+	
+	
+}

@@ -7,6 +7,7 @@ div {
 	display: inline-block;
 }
 
+
 #backButton {
 	position: fixed;
 	bottom: 10px;
@@ -49,11 +50,21 @@ div:focus {
 	clear:both;
 }
 
+
+#table1 {
+	border:2px solid black;
+	width:10%; 
+	top:30px; 
+	padding: 10px; 
+	position:fixed;  
+	float:left; 
+}
 /* I wanted to style the buttons, but feel free to improve anything I did */
 
 textarea {
 	background-color:#EEEEFF;
 	border:2px solid #DDDDEE;
+
 }
 
 .btn-success, .btn-danger {
