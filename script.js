@@ -1,6 +1,9 @@
 //Variable declarations
+
 var mapMaker;
 var display;
+
+var mapWidth = 20; //temp value 
 
 var objs = [];
 
@@ -16,27 +19,30 @@ $(document).ready(function(){
  * Loads characters as div's
  **/
 function submitLevel(){
-	var content = $('#map').val();
+	//var content = $('#map').val();	//Not Working	
+	var content = ''; //temp for line above
 	var output = '';
 
+	
 	//X and Y aren't used YET but may be usefull
 	var x = 0;
 	var y = 0;
-	for(var i = 0; i < content.length; i++) {
+	for (i = 0; i < mapWidth; i++)  {	// < content.length not working
 		var c = content.charAt(i);
 
 		if (c === "\n") {
-			x = 0;
-			y++;
-			continue;
+		 	x = 0;
+		 	y++;
+		 	continue;
 		} 
 
-		var obj = new GameObj(x,y,c);
-		objs.push(obj);
+		//** there's something wrong in this code. It won't loop **
+		//obj = new GameObj(x,y,c);
+		//objs.push(obj);
+		//output += GameObj.htmlForObj(obj); //Gets the HTML element for the object
 
-		output += GameObj.htmlForObj(obj); //Gets the HTML element for the object
-
-
+		/*DEBUG*/document.write("(x: " + x + ", y: " + y + "), ");/*DEBUG*/ 
+		
 		x++;
 	}
 
