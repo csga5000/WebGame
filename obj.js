@@ -3,39 +3,39 @@ function GameObj(x, y, c) {
 	this.y = y;
 	this.ch = c;
 
-	// this.img = false;//Not assigned yet...
+	this.img = false;//Not assigned yet...
 
-	// switch(c){
-	// case '.':
-	// case ' ':
-	// 	clearify(this);
-	// 	break;
-	// case 'D':
-	// case 'd':
-	// 	doorify(this);
-	// 	break;
-	// case 'P':
-	// case 'p':
-	// 	portaize(this);
-	// case 'S':
-	// case 's':
-	// 	specialize(this);
-	// 	break;	
-	// case 'W':
-	// case 'w':
-	// default : //default is block that can't be occupied. choice of default images or user chooses sorce.
-	// 	this.canOccupy = false;
-	// }
+	switch(c){
+	case '.':
+	case ' ':
+		clearify(this);
+		break;
+	case 'D':
+	case 'd':
+		doorify(this);
+		break;
+	case 'P':
+	case 'p':
+		portaize(this);
+	case 'S':
+	case 's':
+		specialize(this);
+		break;	
+	case 'W':
+	case 'w':
+	default : //default is block that can't be occupied. choice of default images or user chooses sorce.
+		this.canOccupy = false;
+	}
 
-	// this.id = GameObj.next_id;
-	// GameObj.next_id++;
+	this.id = GameObj.next_id;
+	GameObj.next_id++;
 
-	// this.element = 0;
+	this.element = 0;
 
-	// this.update = function() {
-	// 	$('#obj_' + this.id).css('left',x*GameObj.TILE_SIZE + 'px');
-	// 	$('#obj_' + this.id).css('top',y*GameObj.TILE_SIZE + 'px');
-	// }
+	this.update = function() {
+		$('#obj_' + this.id).css('left',x*GameObj.TILE_SIZE + 'px');
+		$('#obj_' + this.id).css('top',y*GameObj.TILE_SIZE + 'px');
+	}
 
 	// this.findElement = function() {
 	// 	if (!this.element) {
@@ -83,7 +83,7 @@ function portalize(){
 
 function clearify(obj){
 	obj.canOccupy = true;
-	obj.img.src = '/mapImages/blank.jpg';
+	obj.img.src = '/mapImages/blank.png';
 	//obj.img = ; // user can choose/add floor tile image 
 }
 
