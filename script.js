@@ -19,10 +19,25 @@ $(document).ready(function(){
  * Loads characters as div's
  **/
 function submitLevel(){
+	//Add the display div in
+	$('#beforeDisplay').after(display);
+
 	var content = $('#map').val();	//Not Working	
 	//var content = ''; //temp for line above
 	var output = '';
+	
+	var disp = $('#display');
+	var position = disp.position();
+	var bounds = {
+		x: position.x,
+		y: position.y,
+		width: disp.width(),
+		width: disp.height(),
+	}
 
+	//Cleanup vars we don't need
+	delete disp;
+	delete position;
 	
 	//X and Y aren't used YET but may be usefull
 	var x = 0;
@@ -49,7 +64,6 @@ function submitLevel(){
 		x++;
 	}
 
-	$('#beforeDisplay').after(display);
 	$('#display').html(output);
 	//This will remove text area
 	mapMaker = $('#getContent').remove();
