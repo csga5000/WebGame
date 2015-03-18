@@ -19,8 +19,8 @@ $(document).ready(function(){
  * Loads characters as div's
  **/
 function submitLevel(){
-	//var content = $('#map').val();	//Not Working	
-	var content = ''; //temp for line above
+	var content = $('#map').val();	//Not Working	
+	//var content = ''; //temp for line above
 	var output = '';
 
 	
@@ -31,18 +31,21 @@ function submitLevel(){
 		var c = content.charAt(i);
 
 		if (c === "\n") {
+			console.log("Gotcha...");
 		 	x = 0;
 		 	y++;
 		 	continue;
 		} 
 
 		//** there's something wrong in this code. It won't loop **
-		//obj = new GameObj(x,y,c);
-		//objs.push(obj);
-		//output += GameObj.htmlForObj(obj); //Gets the HTML element for the object
+		obj = new GameObj(x,y,c);
+		objs.push(obj);
+		output += GameObj.htmlForObj(obj); //Gets the HTML element for the object
 
-		/*DEBUG*/document.write("(x: " + x + ", y: " + y + "), ");/*DEBUG*/ 
-		
+		///*DEBUG*/document.write("(x: " + x + ", y: " + y + "), ");/*DEBUG*/ 
+		//I prefer console.log.  You can view it in inspect element
+		console.log('Looping at: x:' + x + " y: " + y);
+
 		x++;
 	}
 
@@ -73,7 +76,7 @@ function keyDown(event) {
 
 function keyUp(event) {
 	key = event.keyCode;
-	console.log(key);
+	//console.log(key);
 	
 	//ARROWS: LTRB - 37, 38, 39, 40
 	//WASD: 87, 68, 83, 65

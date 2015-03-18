@@ -96,7 +96,7 @@ function specialize(obj){
  */
 function a_or_an(word){		//limited use so far, with state of objs
 	var c = word.charAt(0);
-	if isNaN(c){	//if "not a number"
+	if (isNaN(c)){	//if "not a number"
 		switch(c) {
 		case 'a': case 'A':
 		case 'e': case 'E':
