@@ -3,7 +3,14 @@ body {
 	color: white;
 	padding:50px;
 }
-
+#beforeDisplay {
+	position:relative;
+	left:150px; 
+	top:150px; 
+}
+#table1 td:hover {
+	background-color: #8888FF;
+}
 td {
 	vertical-align: top;
 }
@@ -61,9 +68,16 @@ div:focus {
 
 #table1 {
 	border:2px solid black;
+<<<<<<< Updated upstream
 	padding:10px;
 	/*Use margins instead of top:;*/
 	/*float:left; */
+=======
+	width:10%; 
+	top:30px; 
+	padding: 10px; 
+	position:relative;
+>>>>>>> Stashed changes
 }
 /* I wanted to style the buttons, but feel free to improve anything I did */
 
