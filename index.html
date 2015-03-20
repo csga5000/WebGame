@@ -30,7 +30,7 @@
 		}
 	</style> 
 	<body>
-		<table width="100%"><tbody>
+		<table width="100%" id="getContent"><tbody>
 			<tr>
 				<td width="250px">
 					<div class='pad'> 
@@ -45,7 +45,7 @@
 					</div>
 				</td>
 				<td>
-					<div id="getContent"  class='pad' style="width:100%">
+					<div class='pad' style="width:100%">
 						<!-- This div is set to the width of the text area so the buttons float to the right below it -->
 						<div width="570px" style="display:inline-block;">
 							<p>Enter map</p>
@@ -55,15 +55,16 @@
 						</div>
 						
 					</div>
-					
-					<div id="beforeDisplay" class="clear"> </div>
-					<div id="display"  class='pad' style="margin-left:100px; display: block; width: auto; width:100%">
-						<!--The tab index makes this item "selectable" so it can recieve key presses-->
-						
-					</div>
 				</td>
 			</tr>
 		</tbody></table>
+
+		<div id="beforeDisplay" class="clear"> </div>
+		<div id="display"  class='pad' style="margin-left:100px; display: block; width: auto; width:100%">
+			<!--The tab index makes this item "selectable" so it can recieve key presses-->
+			
+		</div>
+		
 		<!--<p>
 			<!-- this is a link to the validator" ->
 			<a href="http://validator.w3.org/check?uri=referer"><img
