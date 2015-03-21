@@ -27,6 +27,15 @@
 			margin-top:150px;
 		}
 	</style>
+	<script>
+		function select() {
+			$("#table1 td").css("background-color", "");
+			$(this).css("background-color", "#8888FF");
+		}
+		$(document).ready(function(){
+			$("#table1 td").click(select); 
+		})
+	</script>
 	<body>
 		<table width="100%" id="getContent"><tbody>
 			<tr>
