@@ -1,0 +1,76 @@
+<html>
+<head>
+	<style>
+		body {
+			background-color: black;
+			color: white;
+			font-family: sans-serif;
+			font-size:20px;
+		}
+		.main {
+			margin-left:16.66666%;
+			width:66%;
+			margin-top:50px;
+		}
+		.content {
+			background-color:#BBB;
+			color: #333;
+			border: 3px solid #88C;
+			border-radius:20px;
+			padding: 30px;
+			margin-bottom:30px;
+		}
+		p {
+			margin:0px;
+			margin-bottom:2px;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="content">
+			<h1>SELECTOR $():</h1>
+
+			<p>To select <strong>element</strong> do: $(elemName)</p>
+			<p>EX: $('div') OR $('p')</p>
+			<br>
+
+			<p>To select <strong>class</strong> do: $(className)</p>
+			<p>EX: $('.padded') OR $('.btn-success')</p>
+			<br>
+
+			<p>To select <strong>id</strong>	 do: $(idName)</p>
+			<p>EX: $('#map') OR $('#adminPanel')</p>
+		</div>
+		<div class="content">
+			<h1>Functions:</h1>
+
+			<h2>.after()</h2>
+			<p>Appends HTML code after elemnt</p>
+			<br>
+
+			<p>For example here is HTML:</p>
+			&lt;p>Hello&lt;/p>
+
+			<p>After running: $('p').after(' World')</p>
+			<p>You will get:</p>
+			<p>&lt;p>Hello&lt;/p> World</p>
+
+			<br>
+			<hr>
+			<br>
+
+			<h2>.append()</h2>
+			<p>Inserts HTML code at end of elements content</p>
+			<br>
+
+			<p>For example here is HTML body:</p>
+			&lt;p>Hello&lt;/p>
+
+			<p>After running: $('p').after(' World')</p>
+			<p>You will get:</p>
+			&lt;p>Hello World&lt;/p>
+		</div>
+	</div>
+</body>
+</html>
