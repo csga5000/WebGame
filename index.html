@@ -23,9 +23,10 @@
 		
 	</head>
 	<style> 
-		
+		#beforeDisplay {
+			margin-top:150px;
+		}
 	</style>
-
 	<body>
 		<table width="100%" id="getContent"><tbody>
 			<tr>
@@ -40,27 +41,54 @@
 							<tr><td> Chest </td></tr>
 						</tbody></table>
 					</div>
+
 				</td>
 				<td>
 					<div class='pad' style="width:100%">
-						<!-- This div is set to the width of the text area so the buttons float to the right below it -->
-						<div width="570px" style="display:inline-block;">
-							<p>Enter map</p>
-							<textarea  id="map" rows="24"  cols="79" tabindex="0" ></textarea> <br>
-							<button class="btn-success" onclick="submitLevel()" style="float:right;" tabindex="2">Submit</button>
-							<button class="btn-danger" onclick="" style="float:right;" tabindex="1">Clear</button>
+						<div id="mapBuilderContent" style="width:100%">
+							<div style="display: inline-block;">
+								<p style="display:inline;">Enter map</p>
+								<div style="width:5px;clear:both;"></div>
+								<div id="mapTiles" style="display: inline-block;">
+
+								</div>
+								<div style="clear:both; width: 10px"></div>
+								
+								<table style="width:100%; margin-top:5px;"><tbody>
+									<tr>
+										<td>
+											<div style="display: inline-block">
+												<label style="width:50px">Width:</label><input type="text" id="mapW" value="25"/>
+												<label style="width:50px">Height:</label><input type="text" id="mapH" value="10" />
+												<button class="btn-warning" onclick="setMapTilesFromInputs()">Resize</button>
+
+												<br>
+
+												<div style="float:right; width:auto; margin-top:5px;">
+													<label>Viewport Width:</label><input type="text" id="vwidth" placeholder="100 (In percent of screen)" onkeyup="resizeViewport()" onchange="resizeViewport()" onpaste="resizeViewport()"/>
+												</div>
+											</div>
+										</td>
+										<td style="text-align:right;">
+											<button class="btn-danger" onclick="" tabindex="1">Clear</button>
+											<button class="btn-success" onclick="submitLevel()" tabindex="2">Submit</button>
+										</td>
+									</tr>
+								</tbody></table>
+							</div>
 						</div>
 						
 					</div>
 				</td>
 			</tr>
 		</tbody></table>
+
 		<div id="beforeDisplay" class="clear"> </div>
 		<div id="display"  class='pad' style="margin-left:100px; display: block; width: auto; width:100%">
 			<!--The tab index makes this item "selectable" so it can recieve key presses-->
 			
 		</div>
-		
+
 		<!--<p>
 			<!-- this is a link to the validator" ->
 			<a href="http://validator.w3.org/check?uri=referer"><img

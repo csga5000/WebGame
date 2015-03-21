@@ -15,10 +15,6 @@ td {
 	vertical-align: top;
 }
 
-textarea, input[type="text"]{
-	color: black;
-}
-
 .pad {
 	padding: 15px;
 }
@@ -27,6 +23,12 @@ textarea, input[type="text"]{
 	position: fixed;
 	bottom: 10px;
 	right: 10px;
+}
+
+.mapTile {
+	border:2px solid #444444;
+	float: left;
+	display: block;
 }
 
 .tile {
@@ -68,18 +70,12 @@ div:focus {
 
 #table1 {
 	border:2px solid black;
-<<<<<<< Updated upstream
 	padding:10px;
-	/*Use margins instead of top:;*/
-	/*float:left; */
-=======
-	width:10%; 
-	top:30px; 
-	padding: 10px; 
-	position:relative;
->>>>>>> Stashed changes
 }
-/* I wanted to style the buttons, but feel free to improve anything I did */
+
+label {
+	margin-right:5px;
+}
 
 textarea {
 	background-color:#EEEEFF;
@@ -87,7 +83,14 @@ textarea {
 
 }
 
-.btn-success, .btn-danger {
+input[type=text] {
+	padding:5px 15px 5px 15px;
+	background-color: #555555;
+	border: 2px solid #000000;
+	color:white;
+}
+
+.btn-success, .btn-danger, .btn-warning {
 	padding:5px 15px 5px 15px;/*Top right bottom left*/
 	background-color: black;
 	color:white;
@@ -97,6 +100,10 @@ textarea {
 .btn-success {	
 	background-color: #55CC55;
 	border-color: #33BB33;
+}
+.btn-warning {	
+	background-color: #A0A024;
+	border-color: #757511;
 }
 .btn-danger {	
 	background-color: #DD5555;

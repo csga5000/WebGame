@@ -7,12 +7,84 @@ var mapWidth = 20; //temp value
 
 var objs = [];
 
+var w = 25;
+var h = 10;
+
 //The function I created gets called when the page is loaded
 $(document).ready(function(){
 	display = $('#display').remove();
 	window.onkeydown = keyDown;
 	window.onkeyup = keyUp;
 });
+
+$('#mapTiles').ready(function(){
+	setMapTilesFromInputs();
+});
+
+$(window).resize(function(){
+	setMapTilesWithTimeout();
+});
+
+function resizeViewport() {
+	var size = Number($('#vwidth').val());
+	if (size === 0)
+		size = 100;
+	$('#mapBuilderContent').css('width', size+'%');
+
+	setMapTiles();
+}
+
+function setMapTilesFromInputs() {
+	w = $('#mapW').val();
+	h = $('#mapH').val();
+	
+	setMapTiles();
+}
+
+//Fixes bug with shrinking webpage
+function setMapTilesWithTimeout() {
+	$('#mapTiles').width($(window).width()/2);
+	setTimeout(setMapTiles,100);
+}
+
+function setMapTiles() {
+	var map = $('#mapTiles');
+	var tsize = Math.floor($('#mapBuilderContent').width()/w);
+
+	var aty, atx;
+
+	for (var y = 0; true; y++) {
+		aty = $('.map-row[y='+ y +']');//Evaluates to something like $('div[y=5]')
+		if (!(y < h || aty.length))
+			break;
+
+		if(y >= h) {
+			aty.remove();
+		}
+		else {
+			if (!aty.length) {
+				map.append('<div class="map-row" y="'+ y +'">');
+				aty = $('.map-row[y='+ y +']');
+			}
+			for (var x = 0; true; x++) {
+				atx = $('div[x='+ x +'][y='+ y +']');//Evaluates to something like $('div[x=5][y=5]')
+				if (!(x < w || atx.length))
+					break;
+
+				if(!atx.length) {
+					var elem = '<div x="' + x + '" y="' + y + '" class="mapTile"></div>';
+					aty.append(elem);
+				}
+				else if(x >= w)
+					atx.remove();
+			}
+		}
+	}
+
+	$('.mapTile').css('width', tsize).css('height', tsize);
+
+	map.width(tsize*w);
+}
 
 /**
  * Called when submit button is pressed
