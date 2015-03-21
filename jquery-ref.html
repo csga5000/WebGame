@@ -2,6 +2,8 @@
 <head>
 	<style>
 		body {
+			padding:0px;
+			margin:0px;
 			background-color: black;
 			color: white;
 			font-family: sans-serif;
@@ -10,7 +12,29 @@
 		.main {
 			margin-left:16.66666%;
 			width:66%;
-			margin-top:50px;
+			margin-top:100px;
+		}
+		#nav {
+			position:fixed;
+			top:0px;
+			left:0px;
+			width:100%;
+			background-color:#222;
+			padding-left:16.66666%;
+		}
+		#nav .nav-i {
+			display: inline-block;
+			padding:15px;
+			border-right: 2px solid #222;
+			margin: 0px;
+		}
+		#nav .nav-i:hover {
+			background-color:#111;
+		}
+		#nav a {
+			color: #CCC;
+			font-size: 28px;
+			text-decoration: none;
 		}
 		.content {
 			background-color:#BBB;
@@ -27,8 +51,11 @@
 	</style>
 </head>
 <body>
+	<div id="nav">
+		<div class="nav-i"><a href="#selectors">Selectors</a></div><div class="nav-i"><a href="#functions">Functions</a></div><div class="nav-i"><a href="#chaining">Chaining</a></div>
+	</div>
 	<div class="main">
-		<div class="content">
+		<div class="content" id="selectors">
 			<h1>SELECTOR $():</h1>
 
 			<p>To select <strong>element</strong> do: $(elemName)</p>
@@ -42,8 +69,34 @@
 			<p>To select <strong>id</strong>	 do: $(idName)</p>
 			<p>EX: $('#map') OR $('#adminPanel')</p>
 		</div>
-		<div class="content">
+		<div class="content" id="functions">
 			<h1>Functions:</h1>
+
+			<h2>.html()</h2>
+			<p>Returns the HTML content of an element</p>
+			<p><strong>OR</strong> if you call it with a string parameter you can assign to contents</p>
+			<br>
+
+			<h4>Ex1</h4>
+			<p>For example here is an HTML body:</p>
+			<p>&lt;div>&lt;p>Hello World&lt;/p>&lt;/div></p>
+			<br>
+
+			<p>After Running: var a = $('div').html()</p>
+			<p>A would have the value: "&lt;p>Hello World&lt;/p>"</p>
+			<br>
+
+			<h4>Ex2</h4>
+			<p>Another example HTML body:</p>
+			<p>&lt;div>&lt;p>&lt;/p>&lt;/div></p>
+			<br>
+
+			<p>After Running: var a = $('div').html('Hello World')</p>
+			<p>A would have the value: "&lt;p>Hello World&lt;/p>"</p>
+
+			<br>
+			<hr>
+			<br>
 
 			<h2>.after()</h2>
 			<p>Appends HTML code after elemnt</p>
@@ -70,6 +123,38 @@
 			<p>After running: $('p').after(' World')</p>
 			<p>You will get:</p>
 			&lt;p>Hello World&lt;/p>
+
+			<br>
+			<hr>
+			<br>
+
+			<h2>.remove()</h2>
+			<p>Removes the element and returns it's HTML</p><br>
+
+			<p>For example here is an HTML body:</p>
+			<p>&lt;p>Hello World&lt/p></p>
+			<p>Running:<br>
+			console.log($('p').remove());
+			would output: "&lt;p>Hello World&lt/p>" to the console<br>
+			and the HTML body would be empty.</p>
+
+			<br>
+			<hr>
+			<br>
+
+			<h3>For more functions, goto http://api.jquery.com/</h3>
+		</div>
+
+		<div class="content" id="chaining">
+			<h1>Chaining</h1>
+			<p>All jQuery functions return the selected jquery element. This allows you to chain like so:</p>
+			<p>$('p').before('Hello').html(' ').after('World');</p>
+			<br>
+
+			<p>Running that script on the following HTML:</p>
+			<p>&ltp>&lt;/p></p>
+			<p>Would result in:</p>
+			<p>Hello&ltp> &lt;/p>World</p>
 		</div>
 	</div>
 </body>
