@@ -83,11 +83,16 @@ textarea {
 
 }
 
-input[type=text] {
+input[type=text], input[type=number], input[type=email] {
 	padding:5px 15px 5px 15px;
 	background-color: #555555;
 	border: 2px solid #000000;
 	color:white;
+}
+
+input[type=number] {
+	width: 70px;
+	padding-right:5px;
 }
 
 .btn-success, .btn-danger, .btn-warning {

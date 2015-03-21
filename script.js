@@ -1,14 +1,15 @@
 //Variable declarations
 
+//HTML Elemnts
 var mapMaker;
 var display;
-
-var mapWidth = 20; //temp value 
 
 var objs = [];
 
 var w = 25;
 var h = 10;
+var cust_tsize = 0;
+var mapsize = 100;
 
 //The function I created gets called when the page is loaded
 $(document).ready(function(){
@@ -25,13 +26,28 @@ $(window).resize(function(){
 	setMapTilesWithTimeout();
 });
 
-function resizeViewport() {
-	var size = Number($('#vwidth').val());
-	if (size === 0)
-		size = 100;
-	$('#mapBuilderContent').css('width', size+'%');
 
+var uptimeout;
+function resizeViewport(elem) {
+	mapsize = Number($(elem).val());
+	if (mapsize === 0)
+		mapsize = 100;
+	
+	window.clearTimeout(uptimeout);
+	uptimeout = window.setTimeout(udpateViewport, 500);
+}
+
+function udpateViewport(){
+	$('#mapBuilderContent').css('width', mapsize+'%');
 	setMapTiles();
+}
+
+var resizetimeout;
+function resizeTiles(elem) {
+	cust_tsize = Number($(elem).val());
+	
+	window.clearTimeout(resizetimeout);
+	resizetimeout = window.setTimeout(setMapTiles, 500);
 }
 
 function setMapTilesFromInputs() {
@@ -49,7 +65,7 @@ function setMapTilesWithTimeout() {
 
 function setMapTiles() {
 	var map = $('#mapTiles');
-	var tsize = Math.floor($('#mapBuilderContent').width()/w);
+	var tsize = cust_tsize ? cust_tsize : Math.floor($('#mapBuilderContent').width()/w);
 
 	var aty, atx;
 

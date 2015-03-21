@@ -56,8 +56,6 @@
 					<div class='pad' style="width:100%">
 						<div id="mapBuilderContent" style="width:100%">
 							<div style="display: inline-block;">
-								<p style="display:inline;">Enter map</p>
-								<div style="width:5px;clear:both;"></div>
 								<div id="mapTiles" style="display: inline-block;">
 
 								</div>
@@ -67,14 +65,18 @@
 									<tr>
 										<td>
 											<div style="display: inline-block">
-												<label style="width:50px">Width:</label><input type="text" id="mapW" value="25"/>
-												<label style="width:50px">Height:</label><input type="text" id="mapH" value="10" />
+												<label style="width:50px">Width:</label><input type="number" id="mapW" value="25"/>
+												<label style="width:50px">Height:</label><input type="number" id="mapH" value="10" />
 												<button class="btn-warning" onclick="setMapTilesFromInputs()">Resize</button>
 
 												<br>
 
-												<div style="float:right; width:auto; margin-top:5px;">
-													<label>Viewport Width:</label><input type="text" id="vwidth" placeholder="100 (In percent of screen)" onkeyup="resizeViewport()" onchange="resizeViewport()" onpaste="resizeViewport()"/>
+												<div style="width:auto; margin-top:5px;">
+													<label>Viewport Width:</label><input type="number" placeholder="100" onkeyup="resizeViewport(this)" onchange="resizeViewport(this)" onpaste="resizeViewport(this)"/>
+													<br>
+													<div style="margin-top:5px">
+														<label>Custom Tile Size:</label><input type="number" placeholder="auto" onkeyup="resizeTiles(this)" onchange="resizeTiles(this)" onpaste="resizeTiles(this)"/>
+													</div>
 												</div>
 											</div>
 										</td>
