@@ -1,11 +1,15 @@
 //Variable declarations
 
+//HTML Elemnts
 var mapMaker;
 var display;
 
-var mapWidth = 20; //temp value 
-
 var objs = [];
+
+var w = 25;
+var h = 10;
+var cust_tsize = 0;
+var mapsize = 100;
 
 //The function I created gets called when the page is loaded
 $(document).ready(function(){
@@ -13,6 +17,90 @@ $(document).ready(function(){
 	window.onkeydown = keyDown;
 	window.onkeyup = keyUp;
 });
+
+$('#mapTiles').ready(function(){
+	setMapTilesFromInputs();
+});
+
+$(window).resize(function(){
+	setMapTilesWithTimeout();
+});
+
+
+var uptimeout;
+function resizeViewport(elem) {
+	mapsize = Number($(elem).val());
+	if (mapsize === 0)
+		mapsize = 100;
+	
+	window.clearTimeout(uptimeout);
+	uptimeout = window.setTimeout(udpateViewport, 500);
+}
+
+function udpateViewport(){
+	$('#mapBuilderContent').css('width', mapsize+'%');
+	setMapTiles();
+}
+
+var resizetimeout;
+function resizeTiles(elem) {
+	cust_tsize = Number($(elem).val());
+	
+	window.clearTimeout(resizetimeout);
+	resizetimeout = window.setTimeout(setMapTiles, 500);
+}
+
+function setMapTilesFromInputs() {
+	w = $('#mapW').val();
+	h = $('#mapH').val();
+	
+	setMapTiles();
+}
+
+//Fixes bug with shrinking webpage
+function setMapTilesWithTimeout() {
+	$('#mapTiles').width($(window).width()/2);
+	setTimeout(setMapTiles,100);
+}
+
+function setMapTiles() {
+	var map = $('#mapTiles');
+	var tsize = cust_tsize ? cust_tsize : Math.floor($('#mapBuilderContent').width()/w);
+
+	var aty, atx;
+
+	for (var y = 0; true; y++) {
+		aty = $('.map-row[y='+ y +']');//Evaluates to something like $('div[y=5]')
+		if (!(y < h || aty.length))
+			break;
+
+		if(y >= h) {
+			aty.remove();
+		}
+		else {
+			if (!aty.length) {
+				map.append('<div class="map-row" y="'+ y +'">');
+				aty = $('.map-row[y='+ y +']');
+			}
+			for (var x = 0; true; x++) {
+				atx = $('div[x='+ x +'][y='+ y +']');//Evaluates to something like $('div[x=5][y=5]')
+				if (!(x < w || atx.length))
+					break;
+
+				if(!atx.length) {
+					var elem = '<div x="' + x + '" y="' + y + '" class="mapTile"></div>';
+					aty.append(elem);
+				}
+				else if(x >= w)
+					atx.remove();
+			}
+		}
+	}
+
+	$('.mapTile').css('width', tsize).css('height', tsize);
+
+	map.width(tsize*w);
+}
 
 /**
  * Called when submit button is pressed

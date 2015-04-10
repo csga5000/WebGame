@@ -1,0 +1,37 @@
+SELECTOR:
+==========
+$()
+
+To select element do: $(elemName)
+EX: $('div') OR $('p')
+
+To select class do: $(className)
+EX: $('.padded') OR $('.btn-success')
+
+To select id do: $(idName)
+EX: $('#map') OR $('#adminPanel')
+
+Functions:
+==========
+
+.after()
+---------
+Appends HTML code after elemnt
+
+For example here is HTML body:
+<body><p>Hello</p></body>
+
+After running: $('p').after(' World')
+You will get:
+<body><p>Hello</p> World</body>
+
+.append()
+---------
+Inserts HTML code at end of elements content
+
+For example here is HTML body:
+<body><p>Hello</p></body>
+
+After running: $('p').after(' World')
+You will get:
+<body><p>Hello World</p></body>

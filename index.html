@@ -24,14 +24,22 @@
 	</head>
 	<style> 
 		#beforeDisplay {
-			position:relative;
-			left:150px; 
-			top:150px; 
+			margin-top:150px;
 		}
-	</style> 
+	</style>
+	<script>
+		function select() {
+			$("#table1 td").css("background-color", "");
+			$(this).css("background-color", "#8888FF");
+		}
+		$(document).ready(function(){
+			$("#table1 td").click(select); 
+		})
+	</script>
 	<body>
-		<table width="100%"><tbody>
+		<table width="100%" id="getContent"><tbody>
 			<tr>
+				<!-- LEFT PANEL -->
 				<td width="250px">
 					<div class='pad'> 
 						<table id="table1" class="table"><tbody>
@@ -43,27 +51,61 @@
 							<tr><td> Chest </td></tr>
 						</tbody></table>
 					</div>
+
 				</td>
+				]<!-- CENTER PANEL -->
 				<td>
-					<div id="getContent"  class='pad' style="width:100%">
-						<!-- This div is set to the width of the text area so the buttons float to the right below it -->
-						<div width="570px" style="display:inline-block;">
-							<p>Enter map</p>
-							<textarea  id="map" rows="24"  cols="79" tabindex="0" ></textarea> <br>
-							<button class="btn-success" onclick="submitLevel()" style="float:right;" tabindex="2">Submit</button>
-							<button class="btn-danger" onclick="" style="float:right;" tabindex="1">Clear</button>
+					<div class='pad' style="width:100%">
+						<div id="mapBuilderContent" style="width:100%">
+							<div style="display: inline-block;">
+								<div id="mapTiles" style="display: inline-block;">
+
+								</div>
+								<div style="clear:both; width: 10px"></div>
+								
+								<table style="width:100%; margin-top:5px;"><tbody>
+									<tr>
+										<td>
+											<div style="display: inline-block">
+												<label style="width:50px">Width:</label><input type="number" id="mapW" value="25"/>
+												<label style="width:50px">Height:</label><input type="number" id="mapH" value="10" />
+												<button class="btn-warning" onclick="setMapTilesFromInputs()">Resize</button>
+
+												<br>
+
+												<div style="width:auto; margin-top:5px;">
+													<label>Viewport Width:</label><input type="number" placeholder="100" onkeyup="resizeViewport(this)" onchange="resizeViewport(this)" onpaste="resizeViewport(this)"/>
+													<br>
+													<div style="margin-top:5px">
+														<label>Custom Tile Size:</label><input type="number" placeholder="auto" onkeyup="resizeTiles(this)" onchange="resizeTiles(this)" onpaste="resizeTiles(this)"/>
+													</div>
+												</div>
+											</div>
+										</td>
+										<td style="text-align:right;">
+											<button class="btn-danger" onclick="" tabindex="1">Clear</button>
+											<button class="btn-success" onclick="submitLevel()" tabindex="2">Submit</button>
+										</td>
+									</tr>
+								</tbody></table>
+							</div>
 						</div>
 						
 					</div>
-					
-					<div id="beforeDisplay" class="clear"> </div>
-					<div id="display"  class='pad' style="margin-left:100px; display: block; width: auto; width:100%">
-						<!--The tab index makes this item "selectable" so it can recieve key presses-->
-						
-					</div>
+				</td>
+				<!-- RIGHT PANEL (FOR Kion) -->
+				<td>
+					This is the right hand content
 				</td>
 			</tr>
 		</tbody></table>
+
+		<div id="beforeDisplay" class="clear"> </div>
+		<div id="display"  class='pad' style="margin-left:100px; display: block; width: auto; width:100%">
+			<!--The tab index makes this item "selectable" so it can recieve key presses-->
+			
+		</div>
+
 		<!--<p>
 			<!-- this is a link to the validator" ->
 			<a href="http://validator.w3.org/check?uri=referer"><img
