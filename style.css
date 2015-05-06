@@ -11,6 +11,11 @@ body {
 #table1 td:hover {
 	background-color: #8888FF;
 }
+#imageTable {
+    clear: both;
+    float: left;
+}
+
 td {
 	vertical-align: top;
 }
