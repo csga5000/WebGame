@@ -1,15 +1,87 @@
 //Variable declarations
 
 //HTML Elemnts
+
 var mapMaker;
 var display;
-
 var objs = [];
 
 var w = 25;
 var h = 10;
 var cust_tsize = 0;
 var mapsize = 100;
+
+//Image Elemnts
+//Is there a way to access the number of files in a folder?
+var selectedImageSrc;
+var selectedImage = null;
+var numberOfDoorImages = 3;
+var numberOfWallImages = 3;
+var numberOfObjectImages = 4;
+var numberOfChestImages = 0;
+var numberOfPortalImages = 0;
+var numberOfSpecialImages = 1;
+
+//for debuging elements
+function debug(param){
+	alert(param);	
+}
+
+function populateImageTable(type){
+
+	var numberOfImages
+	switch (type){
+    	case 'door': 
+  	  		numberOfImages = numberOfDoorImages;
+  	  		break;
+  	  	case 'wall': 
+  	  		numberOfImages = numberOfWallImages;
+  	  		break;
+  	  	case 'object': 
+  	  		numberOfImages = numberOfObjectImages;
+  	  		break;
+  	  	case 'chest': 
+  	  		numberOfImages = numberOfChestImages;
+  	  		break;
+  	  	case 'portal': 
+  	  		numberOfImages = numberOfPortalImages;
+  	  		break;
+  	  	case 'special': 
+  	  		numberOfImages = numberOfSpecialImages;	
+  	  		break;
+    	default: numberOfImages = 0;
+    		break;
+    }//end switch
+
+	var table = document.getElementById("imageTable");
+	
+	//delete rows
+	for (var i = 0; i < table.rows.length; i++)
+		table.deleteRow(0);
+
+	//Repopulate list
+	var h = 0
+	for (var i = 0; i < (numberOfImages/3+1); i++){
+   	 	var row = table.insertRow(i);
+    	for (var j = 0; j < 3 && h < numberOfImages; j++){
+    		row.insertCell(j).innerHTML = "<img src='mapImages/" + type + "s/" + type + h + ".png' onclick='selectImage(this)' alt='"+type+"'class = 'tile'>";
+    		h++;
+    	}//end for
+	}//end for
+}	
+
+function selectImage(image){
+	if (selectedImage != null){
+		unselectImage(selectedImage);
+	}
+	selectedImage = image;
+	selectedImageSrc = image.src; 
+	image.style.border = "3px inset #8888FF";
+}
+
+function unselectImage(image){
+	image.style.border = "none";
+}
 
 //The function I created gets called when the page is loaded
 $(document).ready(function(){

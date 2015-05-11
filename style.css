@@ -5,17 +5,21 @@ body {
 }
 #beforeDisplay {
 	position:relative;
-	left:150px; 
+	left:150px;  
 	top:150px; 
 }
 #table1 td:hover {
 	background-color: #8888FF;
 }
-#imageTable {
-    clear: both;
-    float: left;
+#imageTable{
+	float: right;
+	border:2px solid black;
+	padding:10px;	
+	/*margin-left: -235px;
+	margin-top: 245px;*/
+    /*clear: both;*/
+    /*float: left;*/
 }
-
 td {
 	vertical-align: top;
 }
@@ -36,11 +40,18 @@ td {
 	display: block;
 }
 
+.pointer{
+	cursor: pointer;	
+}
+
 .tile {
+	cursor: pointer;
+	onclick=function(){alert("clicked")};
 	display: inline-block;
 	float:left;
-	width:32px;
-	height:32px;
+	width:50px;
+	height:50px;
+	margin: 1px;
 	/*border:2px solid #444444;
 	font-size:64px;
 	text-align:center;*/
@@ -75,7 +86,7 @@ div:focus {
 
 #table1 {
 	border:2px solid black;
-	padding:10px;
+	padding:10px;	
 }
 
 label {

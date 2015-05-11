@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,20 +42,23 @@
 				<td width="250px">
 					<div class='pad'> 
 						<table id="table1" class="table"><tbody>
-							<tr><td> Door </td></tr>
-							<tr><td> Portal </td></tr>
-							<tr><td> Special/Intractable </td></tr>
-							<tr><td> Wall </td></tr>
-							<tr><td> Object </td></tr> 
-							<tr><td> Chest </td></tr>
+							<tr><td> <div class="pointer" onclick="populateImageTable('door')">Door</div> </td></tr>
+							<tr><td> <div class="pointer" onclick="populateImageTable('wall')">Wall</div> </td></tr>
+							<tr><td> <div class="pointer" onclick="populateImageTable('object')">Object</div> </td></tr> 
+							<tr><td> <div class="pointer" onclick="populateImageTable('chest')">Chest</div> </td></tr>
+							<tr><td> <div class="pointer" onclick="populateImageTable('portal')">Portal</div></td></tr>
+							<tr><td> <div class="pointer" onclick="populateImageTable('special')">Special/Intractable</div> </td></tr>
 						</tbody></table>
 					</div>
 				</td>
-				<!--IMAGE SELECT-->
+				<!--IMAGE SELECT PANAL //Move this down css #imageTable //3 images per line if space between is 1-2px -->
 				<td width="250px">
-					<div id="imageTable"> 
-						<table id="table1" class="table"><tbody>
-							<tr><td> Selectable images go here </td></tr>
+					<div class ="pad"> 
+						<table id="imageTable" class="table"><tbody>
+							<tr><td>
+								<!--<img src="mapImages/blank/blank0.png" onload="selectImage(this)" alt="blank"class = "tile">-->
+								</td>
+							</tr>
 						</tbody></table>
 					</div>
 				</td>	
