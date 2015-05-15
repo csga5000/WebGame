@@ -16,11 +16,13 @@ var mapsize = 100;
 var selectedImageSrc;
 var selectedImage = null;
 var numberOfDoorImages = 3;
-var numberOfWallImages = 3;
+var numberOfWallImages = 11;
 var numberOfObjectImages = 4;
 var numberOfChestImages = 0;
-var numberOfPortalImages = 0;
+var numberOfPortalImages = 3;
 var numberOfSpecialImages = 1;
+var numberOfBackgroundImages = 3;
+var numberOfPathImages = 14;
 
 //for debuging elements
 function debug(param){
@@ -49,16 +51,25 @@ function populateImageTable(type){
   	  	case 'special': 
   	  		numberOfImages = numberOfSpecialImages;	
   	  		break;
+  	  	case 'background':
+  	  		numberOfImages = numberOfBackgroundImages;
+  	  		break;
+  	  	case 'path':
+  	  		numberOfImages = numberOfPathImages;
+  	  		break;
     	default: numberOfImages = 0;
     		break;
     }//end switch
 
-	var table = document.getElementById("imageTable");
+	var table = /*$("#imageTable");*/ document.getElementById("imageTable");
 	
 	//delete rows
-	for (var i = 0; i < table.rows.length; i++)
-		table.deleteRow(0);
-
+	for (var i = 0; i < table.rows.length; i++){
+		for (var j = 0; j < table.rows[i].cells.length; j++)
+			table.rows[i].deleteCell(j)
+	table.deleteRow(0);
+	}
+	
 	//Repopulate list
 	var h = 0
 	for (var i = 0; i < (numberOfImages/3+1); i++){
@@ -74,6 +85,7 @@ function selectImage(image){
 	if (selectedImage != null){
 		unselectImage(selectedImage);
 	}
+	document.getElementById("objectCreationImage").src = image.src; 
 	selectedImage = image;
 	selectedImageSrc = image.src; 
 	image.style.border = "3px inset #8888FF";

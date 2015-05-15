@@ -47,14 +47,45 @@ td {
 .tile {
 	cursor: pointer;
 	onclick=function(){alert("clicked")};
+	align: left;
 	display: inline-block;
 	float:left;
-	width:50px;
-	height:50px;
+	width:49px;
+	height:49px;
 	margin: 1px;
 	/*border:2px solid #444444;
 	font-size:64px;
 	text-align:center;*/
+}
+
+#objectCreationBox{
+    margin-top: 100px;
+    float: left;
+    background-color: #444444;
+    width: 300px;
+    padding: 15px;
+    border: 5px ridge ;
+    margin: 25px;
+}
+
+#objectCreationImage{
+	border: inset #8888FF;
+	width: 90px;
+	height: 90px;	
+}
+
+fieldset {
+      border: 0;
+    }
+label {
+      display: block;
+      margin: 30px 0 0 0;
+}
+select {
+  width: 200px;
+}
+.overflow {
+   height: 200px;
 }
 
 .obj {
