@@ -1,4 +1,4 @@
-body {
+body, .modal-content {
 	background-color: #222222;
 	color: white;
 	padding:50px;
@@ -59,10 +59,7 @@ td {
 }
 
 #objectCreationBox{
-    margin-top: 100px;
-    float: left;
     background-color: #444444;
-    width: 300px;
     padding: 15px;
     border: 5px ridge ;
     margin: 25px;
@@ -142,6 +139,7 @@ input[type=number] {
 	padding-right:5px;
 }
 
+/* Styling for Buttons */
 .btn-success, .btn-danger, .btn-warning {
 	padding:5px 15px 5px 15px;/*Top right bottom left*/
 	background-color: black;

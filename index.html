@@ -9,13 +9,14 @@
 		<!-- NOTE: We want bootstrap ABOVE our stylesheets so that our stuff overrides bootstrap -->
 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 
 		<!-- Our stuff -->
 		<link rel="icon" type="image/jpg" href="images/favicon.jpg"/> 
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		
 		<script src="jquery-2.1.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<script src="obj.js"></script>
 		<script src="script.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
@@ -36,57 +37,74 @@
 		})
 	</script>
 	<body>
+
+		<!-- Create Object Modal -->
+		<div class="modal fade" id="createObjectModal">
+			<div class="modal-content container">
+				<div class="modal-header">
+					<h1>Create Object Type</h1>
+				</div>
+				<div class="modal-body">
+					<div class="col-md-4">
+						<!--OBJECT CREATION BOX-->
+						<div id="objectCreationBox">
+							Object Creation
+							<br />
+							someone add fields!
+							<br />
+							image url (default or input)
+							<br />
+							background image url (default or input)
+							<br />
+							<img id="objectCreationImage" src="mapImages/blank/blank0.png" alt="blank">
+							<br />
+							rotate 90 degrees button
+							<br />
+							drop down type select
+							<br />
+							if portal, where to.
+							<br />
+							description (optional)
+						</div>
+					</div> <!-- End details col -->
+					<div class="col-md-8 col-xs-12">
+						<div class="col-md-6">
+							<div class='pad'> 
+								<table id="table1" class="table"><tbody>
+									<tr><td> <div class="pointer" onclick="populateImageTable('door')">Door</div> </td></tr>
+									<tr><td> <div class="pointer" onclick="populateImageTable('wall')">Wall</div> </td></tr>
+									<tr><td> <div class="pointer" onclick="populateImageTable('object')">Object</div> </td></tr> 
+									<tr><td> <div class="pointer" onclick="populateImageTable('chest')">Chest</div> </td></tr>
+									<tr><td> <div class="pointer" onclick="populateImageTable('portal')">Portal</div></td></tr>
+									<tr><td> <div class="pointer" onclick="populateImageTable('special')">Special/Intractable</div> </td></tr>
+									<tr><td> <div class="pointer" onclick="populateImageTable('background')">Background</div> </td></tr>
+									<tr><td> <div class="pointer" onclick="populateImageTable('path')">Path</div> </td></tr>
+								</tbody></table>
+							</div>
+						</div> <!-- End types col -->
+						<div class="col-md-6">
+							<div class ="pad"> 
+								<table id="imageTable" class="table"><tbody>
+									<tr><td>
+										<!--<img src="mapImages/blank/blank0.png" onload="selectImage(this)" alt="blank"class = "tile">-->
+										</td>
+									</tr>
+								</tbody></table>
+							</div>
+						</div> <!-- End image col -->
+					</div>
+				</div> <!-- End content-->
+				<div class="modal-footer">
+					<button class="btn-warning" data-dismiss="modal">Discard</button>
+					<button class="btn-success">Save Object</button>
+				</div><!-- End footer -->
+			</div>
+		</div><!-- End modal -->
+
+		<button class="btn-success" type="bottom" data-toggle="modal" data-target="#createObjectModal">Create Object</button>
+
 		<table width="100%" id="getContent"><tbody>
 			<tr>
-				<!-- LEFT PANEL -->
-				<td width="250px">
-					<div class='pad'> 
-						<table id="table1" class="table"><tbody>
-							<tr><td> <div class="pointer" onclick="populateImageTable('door')">Door</div> </td></tr>
-							<tr><td> <div class="pointer" onclick="populateImageTable('wall')">Wall</div> </td></tr>
-							<tr><td> <div class="pointer" onclick="populateImageTable('object')">Object</div> </td></tr> 
-							<tr><td> <div class="pointer" onclick="populateImageTable('chest')">Chest</div> </td></tr>
-							<tr><td> <div class="pointer" onclick="populateImageTable('portal')">Portal</div></td></tr>
-							<tr><td> <div class="pointer" onclick="populateImageTable('special')">Special/Intractable</div> </td></tr>
-							<tr><td> <div class="pointer" onclick="populateImageTable('background')">Background</div> </td></tr>
-							<tr><td> <div class="pointer" onclick="populateImageTable('path')">Path</div> </td></tr>
-
-							
-						</tbody></table>
-					</div>
-				</td>
-				<!--IMAGE SELECT PANAL //Move this down css #imageTable //3 images per line if space between is 1-2px -->
-				<td width="250px">
-					<div class ="pad"> 
-						<table id="imageTable" class="table"><tbody>
-							<tr><td>
-								<!--<img src="mapImages/blank/blank0.png" onload="selectImage(this)" alt="blank"class = "tile">-->
-								</td>
-							</tr>
-						</tbody></table>
-					</div>
-				</td>
-				<!--OBJECT CREATION BOX-->
-				<div id="objectCreationBox">
-					Object Creation
-					<br />
-					someone add fields!
-					<br />
-					image url (default or input)
-					<br />
-					background image url (default or input)
-					<br />
-					<img id="objectCreationImage" src="mapImages/blank/blank0.png" alt="blank">
-					<br />
-					rotate 90 degrees button
-					<br />
-					drop down type select
-					<br />
-					if portal, where to.
-					<br />
-					description (optional)
-
-				</div>	
 				<!-- CENTER PANEL -->
 				<td>
 					<div class='pad' style="width:100%">
