@@ -58,17 +58,29 @@ td {
 	text-align:center;*/
 }
 
+.bg_fg_tile {
+	border: inset #8888FF;
+	position:relative;
+	top:0px;
+	left:0px;
+}
+
+.bg_fg_tile img {
+	position: absolute;
+	top:0px;
+	left:0px;
+}
+
+.bg_fg_tile, .bg_fg_tile img {
+	width: 90px;
+	height: 90px;
+}
+
 #objectCreationBox{
     background-color: #444444;
     padding: 15px;
     border: 5px ridge ;
     margin: 25px;
-}
-
-#objectCreationImage{
-	border: inset #8888FF;
-	width: 90px;
-	height: 90px;	
 }
 
 fieldset {
