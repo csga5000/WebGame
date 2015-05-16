@@ -6,6 +6,8 @@ var mapMaker;
 var display;
 var game;
 
+var tiles = [];
+
 var w = 25;
 var h = 10;
 var cust_tsize = 0;
@@ -16,15 +18,16 @@ function debug(param){
 	alert(param);
 }
 
-//The function I created gets called when the page is loaded
+//The function passed to ready gets called when the document(aka. the webpage) is loaded
 $(document).ready(function(){
-	
+
 	display = $('#display').remove();
 	window.onkeydown = keyDown;
 	window.onkeyup = keyUp;
 
 	$('#saveNewTile').click(function() {
-		saveNewTile();
+		
+		tiles.push();
 	});
 });
 
@@ -36,7 +39,7 @@ $(window).resize(function(){
 	setMapTilesWithTimeout();
 });
 
-//// VIEWPORT/TILESIZE FUNCTIONS ////
+//// Viewport/Tilesize related functions ////
 
 var uptimeout;
 function resizeViewport(elem) {
@@ -114,6 +117,7 @@ function setMapTiles() {
 }
 
 //// SUBMIT LEVEL STUFF ////
+
 /**
  * Called when submit button is pressed
  * Loads characters as div's
@@ -148,7 +152,7 @@ function submitLevel()
 	var x = 0;
 	var y = 0;
 	for (i = 0; i < mapWidth; i++)  {	// < content.length not working
-		obj = new GameObj(x,y,c);
+		obj = new GameObj(x,y);
 		game.addObj(obj);
 		output += GameObj.htmlForObj(obj); //Gets the HTML element for the object
 

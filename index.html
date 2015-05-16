@@ -16,9 +16,9 @@
 
 		<script src="jquery-2.1.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="obj.js"></script>
+		<script src="js/GameObj.js"></script>
 		<script src="js/index.js"></script>
-		<script src="js/game.js"></script>
+		<script src="js/Game.js"></script>
 		<script src="js/add_tile.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 
@@ -55,7 +55,7 @@
 							</div>
 							<div class="form-group">
 								<label for="bg_image_url">Background Image URL:</label>
-								<input type="text" name="bg_image_URL" />
+								<input type="text" name="bg_image_url" />
 							</div>
 							<br>
 							<div class="bg_fg_tile">
@@ -88,13 +88,9 @@
 							</div>
 						</div> <!-- End types col -->
 						<div class="col-xs-6">
-							<div class ="pad"> 
-								<table id="imageTable" class="table"><tbody>
-									<tr><td>
-										<!--<img src="mapImages/blank/blank0.png" onload="selectImage(this)" alt="blank"class = "tile">-->
-										</td>
-									</tr>
-								</tbody></table>
+							<div class="pad">
+								<table id="tile_image_table" width="100%">
+								</table>
 							</div>
 						</div> <!-- End image col -->
 					</div>

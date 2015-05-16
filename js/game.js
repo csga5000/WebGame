@@ -8,13 +8,13 @@ function Game()
 	}
 
 	this.update = function() {
-		objs.forEach(function(obj){
+		this.objs.forEach(function(obj){
 			obj.update();
 		});
 	}
 
 	this.addObj = function(obj) {
-		objs.push(obj);
+		this.objs.push(obj);
 	}
 
 }

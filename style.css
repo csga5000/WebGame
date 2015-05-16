@@ -53,21 +53,23 @@ td {
 }
 
 .pointer{
-	cursor: pointer;	
+	cursor: pointer;
 }
 
-.tile {
+.tile_image {
 	cursor: pointer;
-	onclick=function(){alert("clicked")};
-	align: left;
 	display: inline-block;
 	float:left;
-	width:49px;
-	height:49px;
+	width:100%;
+	height:auto;
 	margin: 1px;
 	/*border:2px solid #444444;
 	font-size:64px;
 	text-align:center;*/
+}
+
+#tile_image_table td {
+	width:33%;
 }
 
 .bg_fg_tile {

@@ -29,7 +29,6 @@ GameObj.htmlForObj = function(obj) {
 		content = '<img src="' + obj.img + '" />';
 	}
 	return '<div id="obj_' + obj.id + '" class="obj">' + content + '</div>';
-	
 }
 
 GameObj.next_id = 0;
