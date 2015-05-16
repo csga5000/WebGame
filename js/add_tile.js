@@ -1,37 +1,47 @@
-$('#createObjectModal').ready(function(){
+//Image Elemnts
+//Is there a way to access the number of files in a folder?
+var selectedImageSrc;
+var selectedImage = null;
+var numberOfDoorImages = 3;
+var numberOfWallImages = 11;
+var numberOfObjectImages = 4;
+var numberOfChestImages = 0;
+var numberOfPortalImages = 3;
+var numberOfSpecialImages = 1;
+var numberOfBackgroundImages = 3;
+var numberOfPathImages = 14;
 
-});
-
-function populateImageTable(type){
+function populateImageTable(type)
+{
 	var numberOfImages
 	switch (type){
-			case 'door':
-					numberOfImages = numberOfDoorImages;
-					break;
-				case 'wall':
-					numberOfImages = numberOfWallImages;
-					break;
-				case 'object':
-					numberOfImages = numberOfObjectImages;
-					break;
-				case 'chest':
-					numberOfImages = numberOfChestImages;
-					break;
-				case 'portal':
-					numberOfImages = numberOfPortalImages;
-					break;
-				case 'special':
-					numberOfImages = numberOfSpecialImages;
-					break;
-				case 'background':
-					numberOfImages = numberOfBackgroundImages;
-					break;
-				case 'path':
-					numberOfImages = numberOfPathImages;
-					break;
-			default: numberOfImages = 0;
-				break;
-		}//end switch
+		case 'door':
+			numberOfImages = numberOfDoorImages;
+			break;
+		case 'wall':
+			numberOfImages = numberOfWallImages;
+			break;
+		case 'object':
+			numberOfImages = numberOfObjectImages;
+			break;
+		case 'chest':
+			numberOfImages = numberOfChestImages;
+			break;
+		case 'portal':
+			numberOfImages = numberOfPortalImages;
+			break;
+		case 'special':
+			numberOfImages = numberOfSpecialImages;
+			break;
+		case 'background':
+			numberOfImages = numberOfBackgroundImages;
+			break;
+		case 'path':
+			numberOfImages = numberOfPathImages;
+			break;
+		default: numberOfImages = 0;
+			break;
+	}//end switch
 
 	var table = /*$("#imageTable");*/ document.getElementById("imageTable");
 
@@ -44,17 +54,18 @@ function populateImageTable(type){
 
 	//Repopulate list
 	var h = 0
-	for (var i = 0; i < (numberOfImages/3+1); i++){
+	for (var i = 0; i < (numberOfImages/3+1); i++) {
 			var row = table.insertRow(i);
-			for (var j = 0; j < 3 && h < numberOfImages; j++){
+			for (var j = 0; j < 3 && h < numberOfImages; j++) {
 				row.insertCell(j).innerHTML = "<img src='mapImages/" + type + "s/" + type + h + ".png' onclick='selectImage(this)' alt='"+type+"'class = 'tile'>";
 				h++;
 			}//end for
 	}//end for
 }
 
-function selectImage(image){
-	if (selectedImage != null){
+function selectImage(image)
+{
+	if (selectedImage != null) {
 		unselectImage(selectedImage);
 	}
 	document.getElementById("objectCreationImage").src = image.src;
@@ -63,6 +74,7 @@ function selectImage(image){
 	image.style.border = "3px inset #8888FF";
 }
 
-function unselectImage(image){
+function unselectImage(image)
+{
 	image.style.border = "none";
 }

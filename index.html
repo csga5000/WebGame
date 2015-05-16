@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		
+
 		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 		<title>WebGame</title>
 
@@ -13,14 +13,15 @@
 
 		<!-- Our stuff -->
 		<link rel="stylesheet" type="text/css" href="style.css"/>
-		
+
 		<script src="jquery-2.1.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="obj.js"></script>
-		<script src="js/script.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/game.js"></script>
 		<script src="js/add_tile.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		
+
 	</head>
 	<style> 
 		#beforeDisplay {
@@ -100,7 +101,7 @@
 				</div> <!-- End content-->
 				<div class="modal-footer">
 					<button class="btn-warning" data-dismiss="modal">Discard</button>
-					<button class="btn-success">Save Object</button>
+					<button id="saveNewTile" class="btn-success">Save Object</button>
 				</div><!-- End footer -->
 			</div>
 		</div><!-- End modal -->

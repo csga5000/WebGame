@@ -1,31 +1,8 @@
-function GameObj(x, y, c) {
+function GameObj(x, y) {
 	this.x = x;
 	this.y = y;
-	this.ch = c;
 
 	this.img = false;//Not assigned yet...
-
-	switch(c){
-	case '.':
-	case ' ':
-		clearify(this);
-		break;
-	case 'D':
-	case 'd':
-		doorify(this);
-		break;
-	case 'P':
-	case 'p':
-		portaize(this);
-	case 'S':
-	case 's':
-		specialize(this);
-		break;	
-	case 'W':
-	case 'w':
-	default : //default is block that can't be occupied. choice of default images or user chooses sorce.
-		this.canOccupy = false;
-	}
 
 	this.id = GameObj.next_id;
 	GameObj.next_id++;

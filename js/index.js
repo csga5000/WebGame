@@ -4,25 +4,12 @@
 
 var mapMaker;
 var display;
-var objs = [];
+var game;
 
 var w = 25;
 var h = 10;
 var cust_tsize = 0;
 var mapsize = 100;
-
-//Image Elemnts
-//Is there a way to access the number of files in a folder?
-var selectedImageSrc;
-var selectedImage = null;
-var numberOfDoorImages = 3;
-var numberOfWallImages = 11;
-var numberOfObjectImages = 4;
-var numberOfChestImages = 0;
-var numberOfPortalImages = 3;
-var numberOfSpecialImages = 1;
-var numberOfBackgroundImages = 3;
-var numberOfPathImages = 14;
 
 //for debuging elements
 function debug(param){
@@ -31,9 +18,14 @@ function debug(param){
 
 //The function I created gets called when the page is loaded
 $(document).ready(function(){
+	
 	display = $('#display').remove();
 	window.onkeydown = keyDown;
 	window.onkeyup = keyUp;
+
+	$('#saveNewTile').click(function() {
+		saveNewTile();
+	});
 });
 
 $('#mapTiles').ready(function(){
@@ -44,13 +36,14 @@ $(window).resize(function(){
 	setMapTilesWithTimeout();
 });
 
+//// VIEWPORT/TILESIZE FUNCTIONS ////
 
 var uptimeout;
 function resizeViewport(elem) {
 	mapsize = Number($(elem).val());
 	if (mapsize === 0 || mapsize > 100)
 		mapsize = 100;
-	
+
 	window.clearTimeout(uptimeout);
 	uptimeout = window.setTimeout(udpateViewport, 500);
 }
@@ -120,11 +113,15 @@ function setMapTiles() {
 	map.width(tsize*w);
 }
 
+//// SUBMIT LEVEL STUFF ////
 /**
  * Called when submit button is pressed
  * Loads characters as div's
  **/
-function submitLevel(){
+function submitLevel()
+{
+	game = new Game();
+
 	//Add the display div in
 	$('#beforeDisplay').after(display);
 
@@ -144,26 +141,18 @@ function submitLevel(){
 	//Cleanup vars we don't need
 	delete disp;
 	delete position;
-	
+
+	mapWidth = Number.parseInt($('#mapW').val());
+
 	//X and Y aren't used YET but may be usefull
 	var x = 0;
 	var y = 0;
 	for (i = 0; i < mapWidth; i++)  {	// < content.length not working
-		var c = content.charAt(i);
-
-		if (c === "\n") {
-			console.log("Gotcha...");
-		 	x = 0;
-		 	y++;
-		 	continue;
-		} 
-
-		//** there's something wrong in this code. It won't loop **
 		obj = new GameObj(x,y,c);
-		objs.push(obj);
+		game.addObj(obj);
 		output += GameObj.htmlForObj(obj); //Gets the HTML element for the object
 
-		///*DEBUG*/document.write("(x: " + x + ", y: " + y + "), ");/*DEBUG*/ 
+		///*DEBUG*/document.write("(x: " + x + ", y: " + y + "), ");/*DEBUG*/
 		//I prefer console.log.  You can view it in inspect element
 		console.log('Looping at: x:' + x + " y: " + y);
 
@@ -175,14 +164,7 @@ function submitLevel(){
 	mapMaker = $('#getContent').remove();
 	$('#display').after('<button id="backButton" class="btn-success" onclick="backButton()">text</button>');
 
-	update();
-	setInterval(update,15);//Called every 15 miliseconds, so 66 times a second
-}
-
-function update() {
-	objs.forEach(function(obj){
-		obj.update();
-	});
+	game.start();
 }
 
 function backButton() {
