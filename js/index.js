@@ -63,7 +63,7 @@ function udpateViewport(){
 var resizetimeout;
 function resizeTiles(elem) {
 	cust_tsize = Number($(elem).val());
-	
+
 	window.clearTimeout(resizetimeout);
 	resizetimeout = window.setTimeout(setMapTiles, 500);
 }
@@ -71,7 +71,7 @@ function resizeTiles(elem) {
 function setMapTilesFromInputs() {
 	w = $('#mapW').val();
 	h = $('#mapH').val();
-	
+
 	setMapTiles();
 }
 
