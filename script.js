@@ -26,73 +26,7 @@ var numberOfPathImages = 14;
 
 //for debuging elements
 function debug(param){
-	alert(param);	
-}
-
-function populateImageTable(type){
-
-	var numberOfImages
-	switch (type){
-    	case 'door': 
-  	  		numberOfImages = numberOfDoorImages;
-  	  		break;
-  	  	case 'wall': 
-  	  		numberOfImages = numberOfWallImages;
-  	  		break;
-  	  	case 'object': 
-  	  		numberOfImages = numberOfObjectImages;
-  	  		break;
-  	  	case 'chest': 
-  	  		numberOfImages = numberOfChestImages;
-  	  		break;
-  	  	case 'portal': 
-  	  		numberOfImages = numberOfPortalImages;
-  	  		break;
-  	  	case 'special': 
-  	  		numberOfImages = numberOfSpecialImages;	
-  	  		break;
-  	  	case 'background':
-  	  		numberOfImages = numberOfBackgroundImages;
-  	  		break;
-  	  	case 'path':
-  	  		numberOfImages = numberOfPathImages;
-  	  		break;
-    	default: numberOfImages = 0;
-    		break;
-    }//end switch
-
-	var table = /*$("#imageTable");*/ document.getElementById("imageTable");
-	
-	//delete rows
-	for (var i = 0; i < table.rows.length; i++){
-		for (var j = 0; j < table.rows[i].cells.length; j++)
-			table.rows[i].deleteCell(j)
-	table.deleteRow(0);
-	}
-	
-	//Repopulate list
-	var h = 0
-	for (var i = 0; i < (numberOfImages/3+1); i++){
-   	 	var row = table.insertRow(i);
-    	for (var j = 0; j < 3 && h < numberOfImages; j++){
-    		row.insertCell(j).innerHTML = "<img src='mapImages/" + type + "s/" + type + h + ".png' onclick='selectImage(this)' alt='"+type+"'class = 'tile'>";
-    		h++;
-    	}//end for
-	}//end for
-}	
-
-function selectImage(image){
-	if (selectedImage != null){
-		unselectImage(selectedImage);
-	}
-	document.getElementById("objectCreationImage").src = image.src; 
-	selectedImage = image;
-	selectedImageSrc = image.src; 
-	image.style.border = "3px inset #8888FF";
-}
-
-function unselectImage(image){
-	image.style.border = "none";
+	alert(param);
 }
 
 //The function I created gets called when the page is loaded
@@ -114,7 +48,7 @@ $(window).resize(function(){
 var uptimeout;
 function resizeViewport(elem) {
 	mapsize = Number($(elem).val());
-	if (mapsize === 0)
+	if (mapsize === 0 || mapsize > 100)
 		mapsize = 100;
 	
 	window.clearTimeout(uptimeout);
@@ -194,10 +128,10 @@ function submitLevel(){
 	//Add the display div in
 	$('#beforeDisplay').after(display);
 
-	var content = $('#map').val();	//Not Working	
+	var content = $('#map').val();	//Not Working
 	//var content = ''; //temp for line above
 	var output = '';
-	
+
 	var disp = $('#display');
 	var position = disp.position();
 	var bounds = {

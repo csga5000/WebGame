@@ -12,13 +12,13 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 
 		<!-- Our stuff -->
-		<link rel="icon" type="image/jpg" href="images/favicon.jpg"/> 
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		
 		<script src="jquery-2.1.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="obj.js"></script>
 		<script src="script.js"></script>
+		<script src="js/add_tile.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		
 	</head>
@@ -105,10 +105,16 @@
 			</div>
 		</div><!-- End modal -->
 
-		<button class="btn-success" type="bottom" data-toggle="modal" data-target="#createObjectModal">Create Object</button>
-
 		<table width="100%" id="getContent"><tbody>
 			<tr>
+				<!-- LEFT PANEL -->
+				<td id="tile_select_panel">
+					<h3 style="margin:0px;">Tile Select</h3>
+					<hr>
+					<div id="tile_list">
+					</div>
+					<button class="btn-success" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#createObjectModal">Create Object</button>
+				</td>
 				<!-- CENTER PANEL -->
 				<td>
 					<div class='pad' style="width:100%">
@@ -118,23 +124,36 @@
 
 								</div>
 								<div style="clear:both; width: 10px"></div>
-								
+
 								<table style="width:100%; margin-top:5px;"><tbody>
 									<tr>
 										<td>
-											<div style="display: inline-block">
-												<label style="width:50px">Width:</label><input type="number" id="mapW" value="25"/>
-												<label style="width:50px">Height:</label><input type="number" id="mapH" value="10" />
-												<button class="btn-warning" onclick="setMapTilesFromInputs()">Resize</button>
-
+											<div class="input-group">
+												<label>Width:</label>
 												<br>
 
-												<div style="width:auto; margin-top:5px;">
-													<label>Viewport Width:</label><input type="number" placeholder="100" onkeyup="resizeViewport(this)" onchange="resizeViewport(this)" onpaste="resizeViewport(this)"/>
+												<input type="number" id="mapW" value="25"/>
+											</div>
+											<div class="input-group">
+												<label>Height:</label>
+												<br>
+												<input type="number" id="mapH" value="10" />
+											</div>
+
+											<button class="btn-warning" style="display:inline;" onclick="setMapTilesFromInputs()">Resize</button>
+
+											<br>
+
+											<div style="width:auto; margin-top:5px;">
+												<div class="input-group">
+													<label>Viewport Width:</label>
 													<br>
-													<div style="margin-top:5px">
-														<label>Custom Tile Size:</label><input type="number" placeholder="auto" onkeyup="resizeTiles(this)" onchange="resizeTiles(this)" onpaste="resizeTiles(this)"/>
-													</div>
+													<input type="number" placeholder="100" onkeyup="resizeViewport(this)" onchange="resizeViewport(this)" onpaste="resizeViewport(this)"/>
+												</div>
+												<div class="input-group" style="margin-top:5px">
+													<label>Custom Tile Size:</label>
+													<br>
+													<input type="number" placeholder="auto" onkeyup="resizeTiles(this)" onchange="resizeTiles(this)" onpaste="resizeTiles(this)"/>
 												</div>
 											</div>
 										</td>
@@ -146,12 +165,7 @@
 								</tbody></table>
 							</div>
 						</div>
-						
 					</div>
-				</td>
-				<!-- RIGHT PANEL (FOR Kion) -->
-				<td>
-					This is the right hand content
 				</td>
 			</tr>
 		</tbody></table>

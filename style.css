@@ -3,6 +3,12 @@ body, .modal-content {
 	color: white;
 	padding:50px;
 }
+
+h1,h2,h3,h4,h5,div,p,hr {
+	margin:0px;
+	padding:0px;
+}
+
 #beforeDisplay {
 	position:relative;
 	left:150px;  
@@ -11,10 +17,16 @@ body, .modal-content {
 #table1 td:hover {
 	background-color: #8888FF;
 }
+
+#tile_select_panel {
+	width:250px;
+	padding:5px 15px 5px 15px;
+}
+
 #imageTable{
 	float: right;
 	border:2px solid black;
-	padding:10px;	
+	padding:10px;
 	/*margin-left: -235px;
 	margin-top: 245px;*/
     /*clear: both;*/
@@ -84,12 +96,15 @@ td {
 }
 
 fieldset {
-      border: 0;
-    }
-label {
-      display: block;
-      margin: 30px 0 0 0;
+	border: 0;
 }
+label {
+	margin: 30px 0 0 0;
+}
+.input-group {
+	display:inline-block;
+}
+
 select {
   width: 200px;
 }
