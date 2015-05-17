@@ -13,8 +13,7 @@ $('#createObjectModal').ready(function(){
 //http://stackoverflow.com/questions/11489738/how-do-i-count-files-in-a-directory-using-jquery
 //Best answers: Mendhak's, and mplungjan's
 
-var selectedImageSrc;
-var selectedImage = null;
+var selectedImage, selectedBgImage = null;
 var numberOfDoorImages = 3;
 var numberOfWallImages = 11;
 var numberOfObjectImages = 4;
@@ -24,12 +23,16 @@ var numberOfSpecialImages = 1;
 var numberOfBackgroundImages = 3;
 var numberOfPathImages = 14;
 
+var openType;
+
+var backgroundTypes = ['background'];
+
 function populateImageTable()
 {
-	type = $(this).find('div[type]').attr('type');
+	openType = $(this).find('div[type]').attr('type');
 
 	var numberOfImages
-	switch (type){
+	switch (openType){
 		case 'door':
 			numberOfImages = numberOfDoorImages;
 			break;
@@ -69,7 +72,6 @@ function populateImageTable()
 		//Add rows
 		if (i % 3 === 0)
 		{
-			console.log("YO: + i");
 			tr = $('<tr/>');
 
 			table.append(tr);
@@ -78,9 +80,9 @@ function populateImageTable()
 		var item = $('<img class="tile_image" />');
 
 		//Setup items
-		item.attr('src','mapImages/'+type+'s/'+type+i+'.png');
+		item.attr('src','mapImages/'+openType+'s/'+openType+i+'.png');
 		item.attr('onclick','selectImage(this);');//I should have used item.click(eventFunction)
-		item.attr('alt',type);
+		item.attr('alt',openType+' '+i);
 		item.css('border-width', "3px");
 
 		td = $('<td/>')
@@ -110,12 +112,27 @@ function populateImageTable()
 
 function selectImage(image)
 {
-	if (selectedImage != null) {
-		unselectImage(selectedImage);
+	//If it's in backgrounds array
+	if (backgroundTypes.indexOf(openType) != -1) {
+		if (selectedBgImage != null) {
+			unselectImage(selectedBgImage);
+		}
+
+		$("#objectCreationBgImage").attr('src',image.src);
+
+		selectedBgImage = image;
 	}
-	$("#objectCreationImage").attr('src',image.src);
-	selectedImage = image;
-	selectedImageSrc = image.src;
+	//Must be forground
+	else {
+		if (selectedImage != null) {
+			unselectImage(selectedImage);
+		}
+
+		$("#objectCreationImage").attr('src',image.src);
+
+		selectedImage = image;
+	}
+
 	$(image).css('border', "3px inset #8888FF");
 }
 
