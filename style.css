@@ -14,7 +14,8 @@ h1,h2,h3,h4,h5,div,p,hr {
 	left:150px;  
 	top:150px; 
 }
-#table1 td:hover {
+
+#tile_type_table td:hover {
 	background-color: #8888FF;
 }
 
@@ -140,7 +141,7 @@ div:focus {
 }
 
 
-#table1 {
+#tile_type_table {
 	border:2px solid black;
 	padding:10px;	
 }

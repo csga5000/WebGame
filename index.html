@@ -51,10 +51,12 @@
 						<div id="objectCreationBox">
 							<div class="form-group">
 								<label for="image_url">Image URL:</label>
+								<br>
 								<input type="text" name="image_url" />
 							</div>
 							<div class="form-group">
 								<label for="bg_image_url">Background Image URL:</label>
+								<br>
 								<input type="text" name="bg_image_url" />
 							</div>
 							<br>
@@ -75,15 +77,15 @@
 					<div class="col-md-7 col-xs-12">
 						<div class="col-xs-6">
 							<div class='pad'> 
-								<table id="table1" class="table"><tbody>
-									<tr><td> <div class="pointer" onclick="populateImageTable('door')">Door</div> </td></tr>
-									<tr><td> <div class="pointer" onclick="populateImageTable('wall')">Wall</div> </td></tr>
-									<tr><td> <div class="pointer" onclick="populateImageTable('object')">Object</div> </td></tr> 
-									<tr><td> <div class="pointer" onclick="populateImageTable('chest')">Chest</div> </td></tr>
-									<tr><td> <div class="pointer" onclick="populateImageTable('portal')">Portal</div></td></tr>
-									<tr><td> <div class="pointer" onclick="populateImageTable('special')">Special/Intractable</div> </td></tr>
-									<tr><td> <div class="pointer" onclick="populateImageTable('background')">Background</div> </td></tr>
-									<tr><td> <div class="pointer" onclick="populateImageTable('path')">Path</div> </td></tr>
+								<table id="tile_type_table" class="table"><tbody>
+									<tr><td> <div class="pointer" type="door">Door</div> </td></tr>
+									<tr><td> <div class="pointer" type="wall">Wall</div> </td></tr>
+									<tr><td> <div class="pointer" type="object">Object</div> </td></tr> 
+									<tr><td> <div class="pointer" type="chest">Chest</div> </td></tr>
+									<tr><td> <div class="pointer" type="portal">Portal</div></td></tr>
+									<tr><td> <div class="pointer" type="special">Special/Intractable</div> </td></tr>
+									<tr><td> <div class="pointer" type="background">Background</div> </td></tr>
+									<tr><td> <div class="pointer" type="path">Path</div> </td></tr>
 								</tbody></table>
 							</div>
 						</div> <!-- End types col -->

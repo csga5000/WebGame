@@ -1,5 +1,9 @@
 $('#createObjectModal').ready(function(){
 	//TODO: listen to blur of image_url inputs and update image accorindly
+
+	$('#tile_type_table').find('td').click(populateImageTable);
+
+	$($('#tile_type_table').find('td')[0]).click();
 });
 
 //Image Elemnts
@@ -20,8 +24,10 @@ var numberOfSpecialImages = 1;
 var numberOfBackgroundImages = 3;
 var numberOfPathImages = 14;
 
-function populateImageTable(type)
+function populateImageTable()
 {
+	type = $(this).find('div[type]').attr('type');
+
 	var numberOfImages
 	switch (type){
 		case 'door':
