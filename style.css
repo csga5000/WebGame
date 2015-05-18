@@ -77,6 +77,11 @@ td {
 	text-align:center;*/
 }
 
+.tile_list_item {
+	display: inline-block;
+	width: 48px;
+}
+
 #tile_image_table td {
 	width:33%;
 }

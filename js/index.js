@@ -13,6 +13,8 @@ var h = 10;
 var cust_tsize = 0;
 var mapsize = 100;
 
+var selectedTile;
+
 //for debuging elements
 function debug(param){
 	alert(param);
@@ -35,9 +37,38 @@ $(document).ready(function(){
 		tile.bg_image = modal.find('[name="bg_image_url"]').val();
 		tile.description = modal.find('[name="description"]').html();
 
-		tiles.push(tile);
+		addTile(tile);
+
+		$('#createObjectModal').modal('hide');
 	});
 });
+
+function addTile(tile) {
+	tiles.push(tile);
+
+	var tile_item = $('<div class="tile_list_item bg_fg_tile"></div>');
+	tile_item.attr('tile-id',tile.id);
+
+	tile_item.append($('<img/>').attr('src',tile.bg_image));
+	tile_item.append($('<img/>').attr('src',tile.image));
+
+	$('#tile_list').append(tile_item);
+
+	tile_item.click(function(){
+		console.log(this);
+		selectedTile = getTileById($(this).attr('tile-id'));
+	});
+}
+
+function getTileById(id) {
+	var tile = null;
+	tiles.forEach(function(t){
+		if (t.id == id)
+			tile = t;
+	});
+
+	return tile;
+}
 
 $('#mapTiles').ready(function(){
 	setMapTilesFromInputs();
