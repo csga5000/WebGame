@@ -26,8 +26,16 @@ $(document).ready(function(){
 	window.onkeyup = keyUp;
 
 	$('#saveNewTile').click(function() {
-		
-		tiles.push();
+		var tile = new Tile();
+
+		var modal = $('#createObjectModal');
+
+		tile.name = modal.find('[name="tile_name"]').val();
+		tile.image = modal.find('[name="image_url"]').val();
+		tile.bg_image = modal.find('[name="bg_image_url"]').val();
+		tile.description = modal.find('[name="description"]').html();
+
+		tiles.push(tile);
 	});
 });
 

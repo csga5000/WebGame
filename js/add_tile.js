@@ -119,6 +119,7 @@ function selectImage(image)
 		}
 
 		$("#objectCreationBgImage").attr('src',image.src);
+		$("#createObjectModal [name=bg_image_url]").val(image.src);
 
 		selectedBgImage = image;
 	}
@@ -129,6 +130,7 @@ function selectImage(image)
 		}
 
 		$("#objectCreationImage").attr('src',image.src);
+		$("#createObjectModal [name=image_url]").val(image.src);
 
 		selectedImage = image;
 	}
