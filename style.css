@@ -32,8 +32,21 @@ td {
 	vertical-align: top;
 }
 
+/** Custom Padding classes **/
 .pad {
 	padding: 15px;
+}
+.no-pad {
+	padding:0px;
+}
+.pad-right {
+	padding-right: 15px;
+}
+.pad-left {
+	padding-left: 15px;
+}
+.mar-bottom {
+	margin-bottom: 15px;
 }
 
 #backButton {
