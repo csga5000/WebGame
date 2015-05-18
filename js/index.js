@@ -15,6 +15,8 @@ var mapsize = 100;
 
 var selectedTile;
 
+var currentRotation = 0;
+
 //for debuging elements
 function debug(param){
 	alert(param);
@@ -41,6 +43,10 @@ $(document).ready(function(){
 
 		$('#createObjectModal').modal('hide');
 	});
+
+	$('[name="rotation"]').keyup(function(){
+		currentRotation = Number.parseInt($(this).val());
+	});
 });
 
 function addTile(tile) {
@@ -55,7 +61,6 @@ function addTile(tile) {
 	$('#tile_list').append(tile_item);
 
 	tile_item.click(function(){
-		console.log(this);
 		selectedTile = getTileById($(this).attr('tile-id'));
 	});
 }
@@ -165,7 +170,12 @@ function mapTileClicked() {
 	$(this).attr('tile-id',selectedTile.id);
 
 	$(this).html(selectedTile.getImageDiv());
+
+	crossBrowserCSS($(this),'transform','rotate('+currentRotation+'deg)');
+
 }
+
+
 
 //// SUBMIT LEVEL STUFF ////
 

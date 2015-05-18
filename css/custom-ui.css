@@ -20,7 +20,7 @@ input[type=text], input[type=number], input[type=email] {
 	color:white;
 }
 
-input[type=number] {
+input[type=number], input.short {
 	width: 70px;
 	padding-right:5px;
 }
