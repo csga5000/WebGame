@@ -62,6 +62,7 @@ function addTile(tile) {
 
 function getTileById(id) {
 	var tile = null;
+
 	tiles.forEach(function(t){
 		if (t.id == id)
 			tile = t;
@@ -132,8 +133,8 @@ function setMapTiles() {
 		}
 		else {
 			if (!aty.length) {
-				map.append('<div class="map-row" y="'+ y +'">');
-				aty = $('.map-row[y='+ y +']');
+				aty = $('<div class="map-row" y="'+ y +'">');
+				map.append(aty);
 			}
 			for (var x = 0; true; x++) {
 				atx = $('div[x='+ x +'][y='+ y +']');//Evaluates to something like $('div[x=5][y=5]')
@@ -141,7 +142,12 @@ function setMapTiles() {
 					break;
 
 				if(!atx.length) {
-					var elem = '<div x="' + x + '" y="' + y + '" class="mapTile"></div>';
+					var elem = $('<div class="mapTile"></div>');
+					elem.attr('x',x);
+					elem.attr('y',y);
+
+					elem.click(mapTileClicked);
+
 					aty.append(elem);
 				}
 				else if(x >= w)
@@ -153,6 +159,12 @@ function setMapTiles() {
 	$('.mapTile').css('width', tsize).css('height', tsize);
 
 	map.width(tsize*w);
+}
+
+function mapTileClicked() {
+	$(this).attr('tile-id',selectedTile.id);
+
+	$(this).html(selectedTile.getImageDiv());
 }
 
 //// SUBMIT LEVEL STUFF ////
