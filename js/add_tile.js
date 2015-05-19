@@ -15,7 +15,7 @@ $('#createObjectModal').ready(function(){
 
 var selectedImage, selectedBgImage = null;
 var numberOfDoorImages = 3;
-var numberOfWallImages = 11;
+var numberOfWallImages = 12;
 var numberOfObjectImages = 4;
 var numberOfChestImages = 0;
 var numberOfPortalImages = 3;
