@@ -47,7 +47,20 @@ $(document).ready(function(){
 	$('[name="rotation"]').keyup(function(){
 		currentRotation = Number.parseInt($(this).val());
 	});
+
+	$('#rotate').click(function(){
+		adjustRotation(90);
+	});
+	$('#rotate-counter').click(function(){
+		adjustRotation(-90);
+	});
 });
+
+function adjustRotation(amount) {
+	currentRotation += amount;
+	currentRotation = currentRotation%360;
+	$('[name="rotation"]').val(currentRotation);
+}
 
 function addTile(tile) {
 	tiles.push(tile);
