@@ -54,6 +54,47 @@ $(document).ready(function(){
 	$('#rotate-counter').click(function(){
 		adjustRotation(-90);
 	});
+
+	$('#saveMap').click(function(){
+		var dat = {
+			viewport:{
+				w:w,
+				h:h,
+				cust_tsize:cust_tsize,
+				mapsize:mapsize,
+			},
+			tiles:tiles,
+			map:{}
+		};
+
+		var ly = -1;
+
+		$('.mapTile').each(function(){
+			var elem = $(this);
+
+			if (!elem.attr('tile-id'))
+				return;
+
+			var obj = {
+				tile_id:elem.attr('tile-id')
+			};
+
+			var rotation = elem.css('transform').substr();
+			var start = rotation.indexOf('(');
+			rotation = rotation.substr(start+1,rotation.indexOf('d')-start);
+
+			var y = elem.attr('y');
+			if (y != ly) {
+				console.log(y);
+				dat['map'][y] = {};
+				ly = y;
+			}
+			dat['map'][y][elem.attr('x')] = obj;
+		});
+
+		dat = JSON.stringify(dat);
+		$('#saveModal textarea').html(dat);
+	});
 });
 
 function adjustRotation(amount) {
