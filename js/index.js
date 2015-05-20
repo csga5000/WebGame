@@ -95,6 +95,32 @@ $(document).ready(function(){
 		dat = JSON.stringify(dat);
 		$('#saveModal textarea').html(dat);
 	});
+
+	$('#loadSave').click(function(){
+		var dat = $('#loadModal textarea').val();
+
+		var obj = JSON.parse(dat);
+		
+		var dat = {
+			viewport:{
+				w:w,
+				h:h,
+				cust_tsize:cust_tsize,
+				mapsize:mapsize,
+			},
+			tiles:tiles,
+			map:{
+				0:{
+					0:{tile_id:0, rotation:"90"
+					1:{tile}
+				}
+			}
+		};
+
+		w = obj.viewport.w;
+
+		this.tiles = obj.tiles;
+	});
 });
 
 function adjustRotation(amount) {
@@ -221,14 +247,17 @@ function setMapTiles() {
 }
 
 function mapTileClicked() {
+	setTileAtPos($(this), selectedTile);
+
+}
+
+function setTileAtPos(elem, tile) {
 	$(this).attr('tile-id',selectedTile.id);
 
 	$(this).html(selectedTile.getImageDiv());
 
 	crossBrowserCSS($(this),'transform','rotate('+currentRotation+'deg)');
-
 }
-
 
 
 //// SUBMIT LEVEL STUFF ////
