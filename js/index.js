@@ -30,14 +30,44 @@ $(document).ready(function(){
 
 		var modal = $('#createObjectModal');
 
-		tile.name = modal.find('[name="tile_name"]').val();
-		tile.image = modal.find('[name="image_url"]').val();
-		tile.bg_image = modal.find('[name="bg_image_url"]').val();
-		tile.description = modal.find('[name="description"]').html();
+		tilename = modal.find('[name="tile_name"]');
+		imgname = modal.find('[name="image_url"]');
+		bgimgname = modal.find('[name="bg_image_url"]');
+		desc = modal.find('[name="description"]');
+
+		tile.name = tilename.val();
+		tile.image = imgname.val();
+		tile.bg_image = bgimgname.val();
+		tile.description = desc.html();
+
+		//Clear data
+		tilename.val('');
+		imgname.val('');
+		bgimgname.val('');
+		desc.val('');
+
+		$('#objectCreationBgImage').attr('src','mapImages/blank/blank0.png');
+		$('#objectCreationImage').attr('src','mapImages/blank/blank0.png');
 
 		addTile(tile);
 
 		$('#createObjectModal').modal('hide');
+	});
+
+	$('[name="image_url"]').blur(function(){
+		var val = $(this).val();
+		if (val == '') {
+			val = 'mapImages/blank/blank0.png';
+		}
+		$('#objectCreationImage').attr('src',val);
+	});
+
+	$('[name="bg_image_url"]').blur(function(){
+		var val = $(this).val();
+		if (val == '') {
+			val = 'mapImages/blank/blank0.png';
+		}
+		$('#objectCreationBgImage').attr('src',val);
 	});
 
 	$('[name="rotation"]').keyup(function(){
