@@ -1,13 +1,13 @@
-function GameObj(x, y) {
+function GameObj(x, y, tile, opts) {
 	this.x = x;
 	this.y = y;
-
-	this.img = false;//Not assigned yet...
 
 	this.id = GameObj.next_id;
 	GameObj.next_id++;
 
 	this.element = 0;
+
+	this.tile = tile;
 
 	this.update = function() {
 		$('#obj_' + this.id).css('left',x*GameObj.TILE_SIZE + 'px');
@@ -24,11 +24,12 @@ function GameObj(x, y) {
 
 //Set class methods/variables (static)
 GameObj.htmlForObj = function(obj) {
-	var content = '<span>' + obj.ch + '</span>';
-	if (obj.img) {
-		content = '<img src="' + obj.img + '" />';
-	}
-	return '<div id="obj_' + obj.id + '" class="obj">' + content + '</div>';
+	var div = $('<div class="game_obj"></div>');
+	div.attr('id','obj_'+obj.id);
+	div.css('width',GameObj.TILE_SIZE);
+	div.css('height',GameObj.TILE_SIZE);
+	div.html(obj.tile.getImageDiv());
+	return div;
 }
 
 GameObj.next_id = 0;
