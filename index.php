@@ -8,17 +8,19 @@
 
 		<!-- NOTE: We want bootstrap ABOVE our stylesheets so that our stuff overrides bootstrap -->
 
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<!-- 3rd party sources -->
+		<link rel="stylesheet" href="css/libs/bootstrap.min.css">
 
-		<!-- Our stuff -->
+		<!-- Our stylesheets -->
 		<link rel="stylesheet" type="text/css" href="css/custom-ui.css"/>
-		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="css/game.css"/>
 
-		<script src="jquery-2.1.1.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<!-- JS Libraries -->
+		<script src="js/libs/jquery-2.1.1.min.js"></script>
+		<script src="js/libs/bootstrap.min.js"></script>
 		
+		<!-- Our JS -->
 		<script src="js/script.js"></script>
 		
 		<script src="js/Viewport.js"></script>
@@ -30,7 +32,6 @@
 		<script src="js/Game.js"></script>
 		
 		<script src="js/index.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
 
 	</head>
 	<style> 
