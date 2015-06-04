@@ -1,260 +1,152 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
+	namespace com\csga5000\WebGameLib;
+	require_once('php/TemplateLoader.php');
 
-		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-		<title>WebGame</title>
+	session_start();
 
-		<!-- NOTE: We want bootstrap ABOVE our stylesheets so that our stuff overrides bootstrap -->
+	if (!isset($_SESSION['user_id'])) {
+		//header('Location: login.php');
+	}
 
-		<!-- 3rd party sources -->
-		<link rel="stylesheet" href="css/libs/bootstrap.min.css">
+	echo TemplateLoader::getTemplate('head',[
+		'js' => [
+			'Viewport',
+			'add_tile',
+			'Tile',
+			'GameObj',
+			'Game',
+			'index'
+		],
+		'css' => ['game']
+	]);
 
-		<!-- Our stylesheets -->
-		<link rel="stylesheet" type="text/css" href="css/custom-ui.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/game.css"/>
+?>
+<script>
+function select() {
+	$("#table1 td").css("background-color", "");
+	$(this).css("background-color", "#8888FF");
+}
+$(document).ready(function(){
+	$("#table1 td").click(select); 
+})
+</script>
 
-		<!-- JS Libraries -->
-		<script src="js/libs/jquery-2.1.1.min.js"></script>
-		<script src="js/libs/bootstrap.min.js"></script>
-		
-		<!-- Our JS -->
-		<script src="js/script.js"></script>
-		
-		<script src="js/Viewport.js"></script>
-		
-		<script src="js/add_tile.js"></script>
-		<script src="js/Tile.js"></script>
+<?php echo TemplateLoader::getTemplate('add_tile_modal'); ?>
 
-		<script src="js/GameObj.js"></script>
-		<script src="js/Game.js"></script>
-		
-		<script src="js/index.js"></script>
-
-	</head>
-	<style> 
-		#beforeDisplay {
-			margin-top:150px;
-		}
-	</style>
-	<script>
-		function select() {
-			$("#table1 td").css("background-color", "");
-			$(this).css("background-color", "#8888FF");
-		}
-		$(document).ready(function(){
-			$("#table1 td").click(select); 
-		})
-	</script>
-	<body>
-
-		<!-- Create Object Modal -->
-		<div class="modal fade" id="createObjectModal">
-			<div class="modal-content container">
-				<div class="modal-header">
-					<h1>Create Object Type</h1>
-				</div>
-				<div class="modal-body row">
-					<div class="col-md-5">
-						<!--OBJECT CREATION BOX-->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Details
-							</div>
-							<div class="panel-body">
-								<div class="input-group">
-									<label for="name">Tile Name:</label>
-									<br>
-									<input type="text" name="tile_name" />
-								</div>
-								<div class="form-group">
-									<label for="image_url">Image URL:</label>
-									<br>
-									<input type="text" name="image_url" />
-								</div>
-								<div class="form-group">
-									<label for="bg_image_url">Background Image URL:</label>
-									<br>
-									<input type="text" name="bg_image_url" />
-								</div>
-								<br>
-								<div class="bg_fg_tile">
-									<img id="objectCreationBgImage" src="mapImages/blank/blank0.png" alt="blank">
-									<img id="objectCreationImage" src="mapImages/blank/blank0.png" alt="blank">
-								</div>
-								<br>
-								drop down type select
-								<br>
-								if portal, where to.
-								<br>
-								<div class="input-group">
-									<label for="description">Description</label>
-									<br>
-									<textarea name="description" cols="40"></textarea>
-								</div>
-							</div>
-						</div><!-- End panel -->
-					</div> <!-- End details col -->
-					<div class="col-md-7 col-xs-12">
-						<div class="col-xs-6 no-pad pad-right">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									Image Type
-								</div>
-								<div class="panel-body">
-									<table id="tile_type_table" class="table">
-										<tr><td> <div class="pointer" type="door">Door</div> </td></tr>
-										<tr><td> <div class="pointer" type="wall">Wall</div> </td></tr>
-										<tr><td> <div class="pointer" type="object">Object</div> </td></tr> 
-										<tr><td> <div class="pointer" type="chest">Chest</div> </td></tr>
-										<tr><td> <div class="pointer" type="portal">Portal</div></td></tr>
-										<tr><td> <div class="pointer" type="special">Special/Interactable</div> </td></tr>
-										<tr><td> <div class="pointer" type="background">Background</div> </td></tr>
-										<tr><td> <div class="pointer" type="path">Path</div> </td></tr>
-									</table>
-								</div>
-							</div>
-						</div> <!-- End types col -->
-						<div class="col-xs-6 no-pad pad-left">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									Image
-								</div>
-								<div class="panel-body">
-									<table id="tile_image_table" width="100%">
-									</table>
-								</div>
-							</div>
-						</div> <!-- End image col -->
-					</div>
-				</div> <!-- End content-->
-				<div class="modal-footer">
-					<button class="btn-warning" data-dismiss="modal">Discard</button>
-					<button id="saveNewTile" class="btn-success">Save Object</button>
-				</div><!-- End footer -->
+<div class="modal fade" id="saveModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Save Text
 			</div>
-		</div><!-- End modal -->
-
-		<div class="modal fade" id="saveModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						Save Text
-					</div>
-					<div class="modal-body">
-						<textarea style="width:100%;height:200px;"></textarea>
-					</div>
-					<div class="modal-footer">
-						<button class="btn-success" data-dismiss="modal" data-target="#saveModal">Done</button>
-					</div>
-				</div>
+			<div class="modal-body">
+				<textarea style="width:100%;height:200px;"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button class="btn-success" data-dismiss="modal" data-target="#saveModal">Done</button>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<div class="modal fade" id="loadModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						Paste Text
-					</div>
-					<div class="modal-body">
-						<textarea style="width:100%;height:200px;"></textarea>
-					</div>
-					<div class="modal-footer">
-						<button id="loadSave" class="btn-success" data-dismiss="modal" data-target="#loadModal">Done</button>
-					</div>
-				</div>
+<div class="modal fade" id="loadModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				Paste Text
+			</div>
+			<div class="modal-body">
+				<textarea style="width:100%;height:200px;"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button id="loadSave" class="btn-success" data-dismiss="modal" data-target="#loadModal">Done</button>
 			</div>
 		</div>
+	</div>
+</div>
 
 
-		<table width="100%" id="getContent"><tbody>
-			<tr>
-				<!-- LEFT PANEL -->
-				<td id="tile_select_panel">
-					<h3 style="margin:0px;">Tile Select</h3>
-					<hr>
+<table width="100%" id="getContent"><tbody>
+	<tr>
+		<!-- LEFT PANEL -->
+		<td id="tile_select_panel">
+			<h3 style="margin:0px;">Tile Select</h3>
+			<hr>
 
-					<div id="tile_list">
-					</div>
-					<hr>
+			<div id="tile_list">
+			</div>
+			<hr>
 
-					<label for="rotation">Rotation:</label>
-					<input name="rotation" class="short" type="text" placeholder="0" />
+			<label for="rotation">Rotation:</label>
+			<input name="rotation" class="short" type="text" placeholder="0" />
 
-					<div style="display:inline-block;">
-						<img src="imgs/counter-clockwise.png" style="width:auto; height: 32px; max-width:50%;" id="rotate-counter" />
-						<img src="imgs/clockwise.png" style="width:auto; height: 32px; max-width:50%;" id="rotate" />
-					</div>
+			<div style="display:inline-block;">
+				<img src="imgs/counter-clockwise.png" style="width:auto; height: 32px; max-width:50%;" id="rotate-counter" />
+				<img src="imgs/clockwise.png" style="width:auto; height: 32px; max-width:50%;" id="rotate" />
+			</div>
 
-					<hr>
+			<hr>
 
-					<button class="btn-success" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#createObjectModal">Create a New Tile</button>
-				</td>
-				<!-- CENTER PANEL -->
-				<td>
-					<div class='pad' style="width:100%">
-						<div id="mapBuilderContent" style="width:100%">
-							<div style="display: inline-block;">
-								<div id="mapTiles" style="display: inline-block;">
+			<button class="btn-success" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#createObjectModal">Create a New Tile</button>
+		</td>
+		<!-- CENTER PANEL -->
+		<td>
+			<div class='pad' style="width:100%">
+				<div id="mapBuilderContent" style="width:100%">
+					<div style="display: inline-block;">
+						<div id="mapTiles" style="display: inline-block;">
 
-								</div>
-								<div style="clear:both; width: 10px"></div>
-
-								<table style="width:100%; margin-top:5px;"><tbody>
-									<tr>
-										<td>
-											<div class="input-group">
-												<label>Width:</label>
-												<br>
-
-												<input type="number" id="mapW" value="25"/>
-											</div>
-											<div class="input-group">
-												<label>Height:</label>
-												<br>
-												<input type="number" id="mapH" value="10" />
-											</div>
-
-											<button id="resize" class="btn-warning" style="display:inline;">Resize</button>
-
-											<br>
-
-											<div style="width:auto; margin-top:5px;">
-												<div class="input-group">
-													<label>Viewport Width:</label>
-													<br>
-													<input id="resizeViewport" type="number" placeholder="100" />
-												</div>
-												<div class="input-group" style="margin-top:5px">
-													<label>Custom Tile Size:</label>
-													<br>
-													<input id="resizeTiles" type="number" placeholder="auto" />
-												</div>
-											</div>
-										</td>
-										<td style="text-align:right;">
-											<button class="btn-danger" onclick="" tabindex="1">Clear</button>
-											<button class="btn-success" id="saveMap" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#saveModal">Save</button>
-											<button class="btn-success" id="loadMap" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#loadModal">Load</button>
-											<button class="btn-success" onclick="submitLevel()" tabindex="2">Submit</button>
-										</td>
-									</tr>
-								</tbody></table>
-							</div>
 						</div>
-					</div>
-				</td>
-			</tr>
-		</tbody></table>
+						<div style="clear:both; width: 10px"></div>
 
-		<!--<p>
-			<!-- this is a link to the validator" ->
-			<a href="http://validator.w3.org/check?uri=referer"><img
-			src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
-		</p>-->
-	</body>
-	
-</html>
+						<table style="width:100%; margin-top:5px;"><tbody>
+							<tr>
+								<td>
+									<div class="input-group">
+										<label>Width:</label>
+										<br>
+
+										<input type="number" id="mapW" value="25"/>
+									</div>
+									<div class="input-group">
+										<label>Height:</label>
+										<br>
+										<input type="number" id="mapH" value="10" />
+									</div>
+
+									<button id="resize" class="btn-warning" style="display:inline;">Resize</button>
+
+									<br>
+
+									<div style="width:auto; margin-top:5px;">
+										<div class="input-group">
+											<label>Viewport Width:</label>
+											<br>
+											<input id="resizeViewport" type="number" placeholder="100" />
+										</div>
+										<div class="input-group" style="margin-top:5px">
+											<label>Custom Tile Size:</label>
+											<br>
+											<input id="resizeTiles" type="number" placeholder="auto" />
+										</div>
+									</div>
+								</td>
+								<td style="text-align:right;">
+									<button class="btn-danger" onclick="" tabindex="1">Clear</button>
+									<button class="btn-success" id="saveMap" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#saveModal">Save</button>
+									<button class="btn-success" id="loadMap" style="margin-top:5px;" type="bottom" data-toggle="modal" data-target="#loadModal">Load</button>
+									<button class="btn-success" onclick="submitLevel()" tabindex="2">Submit</button>
+								</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</tbody></table>
+
+<?php
+	echo TemplateLoader::getTemplate('footer');
+?>

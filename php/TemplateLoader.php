@@ -3,73 +3,51 @@
 namespace com\csga5000\WebGameLib;
 
 class TemplateLoader {
-	public static $controller;
-	public static $action;
 
-	public static function fileForAction() {
-		return dirname(dirname(__FILE__)) . '/views/'.self::$controller.'/'.self::$action.'.tpl';
-	}
-	public static function fileForLayout($layout) {
-		return dirname(dirname(__FILE__)) . "/views/layouts/$layout.tpl";
+	public static function fileForTemplate($name) {
+		return dirname(dirname(__FILE__)) . "/templates/$name.tpl";
 	}
 
 	protected static function load($template, $vars = []) {
 		ob_start();
 
-		global $HtmlHelper;
-		$HtmlHelper->vars = &$vars;
 		extract($vars);
-		$ContentManager = new ContentManager();
 
 	    include $template;
 	    $view = ob_get_contents();
 		ob_end_clean();
-		$contents = $ContentManager->contents;
-		$contents['body'] = $view;
-		return $contents;
+
+		return $view;
 	}
 
-	public static function content($vars = []) {
-		return TemplateLoader::load(self::fileForAction(), $vars);
-	}
-
-	public static function layout($name, $vars = []) {
-		return TemplateLoader::load(self::fileForLayout($name), $vars)['body'];
+	public static function getTemplate($name, $vars = []) {
+		return TemplateLoader::load(self::fileForTemplate($name), $vars);
 	}
 }
 
-class ContentManager{
-	protected $type = '';
-	public $contents = [];
-
-	public function begin($type) {
-		$this->contents['body'] = ob_get_contents();
-		$this->type = $type;
-		ob_end_clean();
-		ob_start();
-	}
-
-	public function end(){
-		$this->contents[$this->type] = ob_get_contents();
-		ob_end_clean();
-		$this->type = '';
-		ob_start();
-	}
-
-	public function css($links){
+class ContentManager {
+	public static function css($links){
 		$css = '';
+
+		if (!is_array($links))
+			$links = [$links];
+
 		foreach($links as $link){
-			$css .= '<link class="css" href="'.$link.'.css" rel="stylesheet">' . "\n";
+			$css .= '<link href="css/'.$link.'.css" rel="stylesheet" type="text/css">' . "\n";
 		}
-		$this->contents['css'] = $css;
+		return $css;
 	}
 
-	public function js($links){
+	public static function js($links){
 		$jss = '';
+
+		if (!is_array($links))
+			$links = [$links];
+
 		foreach($links as $link){
-			$jss .= '<script class="js" src="'.$link.'.js"></script>' . "\n";
+			$jss .= '<script class="js" src="js/'.$link.'.js"></script>' . "\n";
 		}
-		$this->contents['js'] = $jss;
+		return $jss;
 	}
 }
 

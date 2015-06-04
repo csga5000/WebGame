@@ -13,7 +13,7 @@ textarea {
 	text-align: left;
 }
 
-input[type=text], input[type=number], input[type=email] {
+input[type=text], input[type=number], input[type=email], input[type=password] {
 	padding:5px 15px 5px 15px;
 	background-color: #555555;
 	border: 2px solid #000000;
@@ -26,7 +26,7 @@ input[type=number], input.short {
 }
 
 /** Styling for Buttons **/
-.btn-success, .btn-danger, .btn-warning {
+.btn-success, .btn-danger, .btn-warning{
 	padding:5px 15px 5px 15px;/*Top right bottom left*/
 	background-color: black;
 	color:white;
@@ -44,6 +44,14 @@ input[type=number], input.short {
 .btn-danger {	
 	background-color: #DD5555;
 	border-color: #FF3333;
+}
+
+.margin-top, #error {
+	margin-top: 15px;
+}
+
+#error {
+	color:#ff3333;
 }
 
 /** Panels **/

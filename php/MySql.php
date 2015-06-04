@@ -1,9 +1,10 @@
 <?php
 namespace com\csga5000\WebGameLib;
-require_once(dirname(__FILE__).'/config/database.php');
+require_once(dirname(dirname(__FILE__)).'/config/database.php');
 
 class MySql{
 	public static $dbInfo;
+	private static $err = false;
 
 	public static function connect() {
 		if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
@@ -17,16 +18,21 @@ class MySql{
 
 		if ($con->connect_errno) {
 			error_log('Connection failed: %s\n', $con->connect_error);
-			exit();
+			$this->err('Could not connect to database!');
+			return false;
 		}
 		return $con;
 	}
 
 	public static function run($query) {
 		$con = self::connect();
+		if (!$con)
+			return false;
+
 		$result = $con->query($query);
 		if (!$result) {
 			error_log($con->error);
+			$this->err('Database query failed. (Check log)');
 			return false;
 		}
 		$con->close();
@@ -36,11 +42,15 @@ class MySql{
 
 	public static function find($query) {
 		$con = self::connect();
+		if (!$con)
+			return false;
+
 		$result = $con->query($query);
 		$resArr = [];
 
 		if (!$result) {
 			error_log($con->error);
+			$this->err('Database find failed. (Check log)');
 			return false;
 		}
 
@@ -53,11 +63,15 @@ class MySql{
 
 	public static function findOne($query) {
 		$con = self::connect();
+		if (!$con)
+			return false;
+
 		$result = $con->query($query);
 		$ret = [];
 
 		if (!$result) {
 			error_log($con->error);
+			$this->err('Database find one failed. (Check log)');
 			return false;
 		}
 
@@ -66,6 +80,10 @@ class MySql{
 		}
 		$con->close();
 		return $ret;
+	}
+
+	public static function getError() {
+		return $this->err;
 	}
 }
 
