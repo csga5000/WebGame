@@ -18,7 +18,7 @@ class MySql{
 
 		if ($con->connect_errno) {
 			error_log('Connection failed: %s\n', $con->connect_error);
-			$this->err('Could not connect to database!');
+			self::err('Could not connect to database!');
 			return false;
 		}
 		return $con;
@@ -32,7 +32,7 @@ class MySql{
 		$result = $con->query($query);
 		if (!$result) {
 			error_log($con->error);
-			$this->err('Database query failed. (Check log)');
+			self::err('Database query failed. (Check log)');
 			return false;
 		}
 		$con->close();
@@ -50,7 +50,7 @@ class MySql{
 
 		if (!$result) {
 			error_log($con->error);
-			$this->err('Database find failed. (Check log)');
+			self::err('Database find failed. (Check log)');
 			return false;
 		}
 
@@ -71,7 +71,7 @@ class MySql{
 
 		if (!$result) {
 			error_log($con->error);
-			$this->err('Database find one failed. (Check log)');
+			self::err('Database find one failed. (Check log)');
 			return false;
 		}
 
@@ -82,8 +82,12 @@ class MySql{
 		return $ret;
 	}
 
+	public static function err($err) {
+		self::$err = $err;
+	}
+
 	public static function getError() {
-		return $this->err;
+		return self::$err;
 	}
 }
 

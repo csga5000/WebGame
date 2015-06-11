@@ -35,7 +35,7 @@ class User extends Model {
 	public function register($username, $password) {
 		$this->hashPass($password);
 
-		$user = $this->findByUsername($user);
+		$user = $this->findByUsername($username);
 
 		if ($user) {
 			$this->err = "User with username $username already exists.";
@@ -43,7 +43,11 @@ class User extends Model {
 		}
 		else
 
-		$this->create(['username' => $username, 'password' => $password]);
+		//True if error
+		if ($err = $this->create(['username' => $username, 'password' => $password])) {
+			$this->err = $err;
+			return false;
+		}
 
 		return $this->findByusername($username);
 	}

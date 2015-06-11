@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/Controller.php');
 class Login extends Controller {
 
 	function init() {
-		parent->init();
+		parent::init();
 
 		$this->loadModel('User');
 	}
@@ -32,10 +32,11 @@ class Login extends Controller {
 			'!'
 		);
 
-		if ($user = $this->user->register($data['username'], $data['password']))
+		if ($user = $this->user->register($data['username'], $data['password'])) {
 			$_SESSION['user_id'] = $user['id'];
 
 			$this->success('Successfully logged in');
+		}
 		else
 			$this->message($this->user->getError());
 	}

@@ -19,11 +19,19 @@ class Model {
 		$vals = [];
 		foreach ($objArr as $col => $val) {
 			$cols[] = $col;
-			$vals[] = $val;
+
+			if (is_string($val))
+				$vals[] = "'".$val."'";
+			else
+				$vals[] = $val;
 		}
 
-		$cols = '('.implode(',', $cols).')';
+		$cols = implode(',', $cols);
+		$vals = implode(',', $vals);
 
-		return MySql::run("INSERT INTO {$this->table} ($cols) VALUES ($vals)");
+		if (!MySql::run("INSERT INTO {$this->table} ($cols) VALUES ($vals)")) {
+			return MySql::getError();
+		}
+		return false;
 	}
 }

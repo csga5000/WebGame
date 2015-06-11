@@ -18,7 +18,7 @@ $(function(){
 		var reg = arrayFromForm(formReg);
 
 		if (reg['password'] === reg['password2'])
-			delete reg['password'];
+			delete reg['password2'];
 		else
 			return fail("Passwords must match!");
 
@@ -37,8 +37,9 @@ $(function(){
 					});
 
 					console.log(message);
-					//TODO:
 				}
+
+				loginRedirect();
 
 			}
 			else
@@ -50,6 +51,7 @@ $(function(){
 	}
 
 	function login() {
+
 		function fail(message){
 			loginErr.html(message);
 
@@ -73,8 +75,9 @@ $(function(){
 					});
 
 					console.log(message);
-					//TODO:
 				}
+
+				loginRedirect();
 
 			}
 			else
@@ -82,6 +85,10 @@ $(function(){
 		})
 		.fail(function(){
 			fail("Request failed!");
-		});;
+		});
+	}
+
+	function loginRedirect() {
+		window.location = 'index.php';
 	}
 });
