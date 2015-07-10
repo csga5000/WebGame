@@ -230,20 +230,33 @@ function setTileAtPos(elem, tile) {
  **/
 function submitLevel()
 {
-	var mapts = getMapObjects();
+	var maptiles = getMapObjects();
 
 	mapMaker = $('body').html();
 	$('body').html('');
 
 	game = new Game();
 
-	console.log(mapts);
+	console.log(maptiles);
 
-	$.each(mapts, function(y,row){
+	/*
+	3 & 2 are y coords,
+	2 & 6 are x coords
+	maptiles = {
+		3:{
+			2:,
+			6:,
+
+		}
+		2:{}
+
+	}*/
+
+
+
+	$.each(maptiles, function(y,row){
 		$.each(row,function(x, obj){
 			var gobj = new GameObj(x,y, tiles[obj.tile_id], obj);
-			
-			console.log(x,y,obj);
 
 			game.addObj(gobj);
 

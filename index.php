@@ -6,7 +6,7 @@
 	session_start();
 
 	if (!isset($_SESSION['user_id'])) {
-		//header('Location: login.php');
+		header('Location: login.php');
 	}
 
 	echo TemplateLoader::getTemplate('head',[
@@ -32,7 +32,10 @@ $(document).ready(function(){
 })
 </script>
 
-<?php echo TemplateLoader::getTemplate('add_tile_modal'); ?>
+<?php
+	echo TemplateLoader::getTemplate('add_tile_modal');
+	echo TemplateLoader::getTemplate('logout');
+?>
 
 <div class="modal fade" id="saveModal">
 	<div class="modal-dialog">

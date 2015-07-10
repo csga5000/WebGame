@@ -26,12 +26,16 @@ input[type=number], input.short {
 }
 
 /** Styling for Buttons **/
-.btn-success, .btn-danger, .btn-warning{
+.btn-default, .btn-success, .btn-danger, .btn-warning{
 	padding:5px 15px 5px 15px;/*Top right bottom left*/
 	background-color: black;
 	color:white;
 	border: 2px solid #333333;
 	margin-left:5px;
+}
+.btn-default {
+	background-color: #111111;
+	border-color: #000000;
 }
 .btn-success {	
 	background-color: #55CC55;

@@ -16,9 +16,10 @@ function Game()
 	this.addObj = function(obj) {
 		this.objs.push(obj);
 	}
-
 }
 
-function updateGame(){
+function updateGame()
+{
 	game.update();
 }
+
