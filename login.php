@@ -10,7 +10,6 @@
 
 
 	echo TemplateLoader::getTemplate('head',['js'=>'login']);
-	echo TemplateLoader::getTemplate('logout');
 ?>
 
 <div class="container">

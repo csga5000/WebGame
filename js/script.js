@@ -28,3 +28,14 @@ function arrayFromForm(form) {
 
 	return arr;
 }
+
+$(function(){
+	$('#logout').click(function(){
+		apiRequest('login','logout',{}).
+			done(function(response){
+				console.log(response);
+				if (response.success)
+					window.location = 'login.php';
+			});
+	});
+});
