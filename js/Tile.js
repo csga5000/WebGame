@@ -22,3 +22,8 @@ function Tile()
 	}
 }
 Tile.next_id = 0;
+
+Tile.TYPE_DOOR = 1;
+Tile.TYPE_WALL = 4;
+Tile.TYPE_PORTAL = 2;
+Tile.TYPE_INTERACTABLE = 3;

@@ -148,5 +148,4 @@ function getTile()
 	var t = new Tile();
 	t.image = $('[name="image_url"]').val();
 	t.bg_image = $('[name="bg_image_url"]').val();
-
 }

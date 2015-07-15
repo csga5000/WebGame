@@ -10,9 +10,27 @@ function GameObj(x, y, tile, opts) {
 	this.tile = tile;
 
 	this.update = function() {
-		$('#obj_' + this.id).css('left',x*GameObj.TILE_SIZE + 'px');
-		$('#obj_' + this.id).css('top',y*GameObj.TILE_SIZE + 'px');
+		this.updateElement();
 	}
+
+	this.updateElement = function() {
+		var obj = $('#obj_' + this.id);
+		obj.css('left',x*GameObj.TILE_SIZE + 'px');
+		obj.css('top',y*GameObj.TILE_SIZE + 'px');
+	}
+
+	//todo: switch case on type
+	switch(this.tile.type) {
+		case Tile.TYPE_DOOR:
+			doorify(this);
+			break;
+		case Tile.TYPE_PORTAL;
+			portalize(this);
+			break;
+	}
+
+
+	tile.image = '';
 
 	// this.findElement = function() {
 	// 	if (!this.element) {
@@ -47,11 +65,10 @@ function doorify (obj){
 
 	obj.state = 'closed';  //other states 'locked', 'open', 'jammed', etc.
 	obj.txt = a_or_an(state) + ' ' + state + ' ' + descript;
-	obj.img.src = '/mapImages/door.png'
+	//obj.tile.image.src = '/mapImages/door.png'
 	//function unlock (w/ key)
 	//function open
 	//obj.state != 'open' ? obj.canOccupy = true : obj.canOccupy = false; //syntax?
-	
 }
 
 function portalize(){
