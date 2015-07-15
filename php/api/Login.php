@@ -35,7 +35,7 @@ class Login extends Controller {
 		if ($user = $this->user->register($data['username'], $data['password'])) {
 			$_SESSION['user_id'] = $user['id'];
 
-			$this->set('user_id', $user[]);
+			$this->set('user_id', $user['user_id']);
 			$this->success('Successfully logged in');
 		}
 		else
