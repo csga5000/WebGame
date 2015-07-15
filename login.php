@@ -2,7 +2,15 @@
 	namespace com\csga5000\WebGameLib;
 	require_once('php/TemplateLoader.php');
 
+	session_start();
+
+	if (isset($_SESSION['user_id']))
+		header('Location: index.php');
+
+
+
 	echo TemplateLoader::getTemplate('head',['js'=>'login']);
+	echo TemplateLoader::getTemplate('logout');
 ?>
 
 <div class="container">

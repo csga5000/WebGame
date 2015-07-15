@@ -57,7 +57,6 @@
 								<tr><td> <div class="pointer" type="wall">Wall</div> </td></tr>
 								<tr><td> <div class="pointer" type="object">Object</div> </td></tr> 
 								<tr><td> <div class="pointer" type="chest">Chest</div> </td></tr>
-								<tr><td> <div class="pointer" type="portal">Portal</div></td></tr>
 								<tr><td> <div class="pointer" type="special">Special/Interactable</div> </td></tr>
 								<tr><td> <div class="pointer" type="background">Background</div> </td></tr>
 								<tr><td> <div class="pointer" type="path">Path</div> </td></tr>

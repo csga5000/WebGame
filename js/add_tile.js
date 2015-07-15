@@ -18,7 +18,6 @@ var numberOfDoorImages = 3;
 var numberOfWallImages = 12;
 var numberOfObjectImages = 4;
 var numberOfChestImages = 0;
-var numberOfPortalImages = 3;
 var numberOfSpecialImages = 1;
 var numberOfBackgroundImages = 3;
 var numberOfPathImages = 14;
@@ -44,9 +43,6 @@ function populateImageTable()
 			break;
 		case 'chest':
 			numberOfImages = numberOfChestImages;
-			break;
-		case 'portal':
-			numberOfImages = numberOfPortalImages;
 			break;
 		case 'special':
 			numberOfImages = numberOfSpecialImages;
