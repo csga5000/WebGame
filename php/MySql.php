@@ -1,10 +1,11 @@
 <?php
 namespace com\csga5000\WebGameLib;
 require_once(dirname(dirname(__FILE__)).'/config/database.php');
-require_once('sql_updates.php');
+require_once(dirname(__FILE__).'/sql/sql_updates.php');
 
-class MySql{
+class MySql {
 	public static $dbInfo;
+	public static $updates;
 	private static $err = false;
 
 	public static function connect() {
@@ -91,21 +92,19 @@ class MySql{
 		return self::$err;
 	}
 
-	public static function update(){
-		global $updates;
-
-		$version = MySql::query('SELECT db_version FROM config');
+	public static function update() {
+		$version = MySql::find('SELECT db_version FROM config');
 
 		$version = $version[0]['db_version'];
-		for($i = $version; $i < sizeof($updates); $i++)
+
+		for($i = $version; $i < sizeof(self::$updates); $i++)
 		{
-			MySql::query($updates[$i]);
+			MySql::run(self::$updates[$i]);
 		}
 
-		MySql::query('UPDATE config SET db_version=' . sizeof($updates));
+		MySql::run('UPDATE config SET db_version=' . sizeof(self::$updates));
 		unset($GLOBALS['updates']);
 	}
 }
-
 
 MySql::update();
