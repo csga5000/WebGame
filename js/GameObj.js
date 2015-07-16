@@ -1,9 +1,11 @@
 function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, description, state 
 	
 	//Private Varables - exist in every object perminately
-	static var X = x;
-	static var Y = y;
-	static var Map_ID = 0; 	//Used for multiple maps
+	//Ned, these were "static".  Javascript doesn't have a static keyword, to do static you do GameObj.X = val; after the GameObj declaration;
+	//Even so, I don't understand why you would want static.  My guess is you wanted private?  Which this does
+	var X = x;
+	var Y = y;
+	var Map_ID = 0; 	//Used for multiple maps
 
 	//Public Variables
 	this.id = GameObj.next_id;
@@ -38,7 +40,7 @@ function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, desc
 		obj.css('top',y*GameObj.TILE_SIZE + 'px');
 	}
 	
-	constructor2();
+	GameObj.constructor2(this);
 
 	// this.findElement = function() {
 	// 	if (!this.element) {
@@ -48,7 +50,8 @@ function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, desc
 	// };
 }
 
-GameObj.constructor2 = function(){
+//Ned, I made this a "static function", and added the obj in as a param
+GameObj.constructor2 = function(obj){
 	
 	GameObj.next_id++; 
 	
@@ -56,7 +59,7 @@ GameObj.constructor2 = function(){
 		case TYPE_DOOR:
 			doorify(this);
 			break;
-		case TYPE_PORTAL;
+		case TYPE_PORTAL:
 			portalize(this);
 			break;
 		case TYPE_WALL:
@@ -70,29 +73,32 @@ GameObj.constructor2 = function(){
 }//end GameObj constructor
 
 //These Functions Can be inherited because of 'prototype', but I don't know if we'll ever need to do that...
-GameObj.prototype.addDescription = funtion(description){
+GameObj.prototype.addDescription = function(description){
 	this.description = description;	
 }
 
 GameObj.prototype.wallify = function(){
-	this.type = TYPE_WALL;	
+	this.type = TYPE_WALL;
 	canOccupy = false;
 }//end wallify
 
 GameObj.prototype.doorify = function(){
 	this.type = TYPE_DOOR;
 	this.state = 'c'; //closed by default
-	this.open = funtion(action){
+	this.open = function(action){
 		switch (action){
 		case 'o':
 			//change image to opened door
 			this.state = 'o';
 			canOccupy = true;
+			break;
 		case 'c':
 			//cange image to closed door
 			this.state = 'c';
 			canOccupy = false;
-	}//end switch
+			break;
+		}//end switch
+	}//end open
 	this.unlock = function(){
 		//something about a correct key
 	}

@@ -7,6 +7,7 @@ class MySql {
 	public static $dbInfo;
 	public static $updates;
 	private static $err = false;
+	public static $lastId = -1;
 
 	public static function connect() {
 		if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
@@ -37,6 +38,7 @@ class MySql {
 			self::err('Database query failed. (Check log)');
 			return false;
 		}
+		self::$lastId = $con->insert_id;
 		$con->close();
 
 		return true;

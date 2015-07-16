@@ -33,9 +33,12 @@ $(function(){
 	$('#logout').click(function(){
 		apiRequest('login','logout',{}).
 			done(function(response){
-				console.log(response);
 				if (response.success)
 					window.location = 'login.php';
 			});
+	});
+
+	$('[flex]').each(function(fle){
+		console.log(fle);
 	});
 });

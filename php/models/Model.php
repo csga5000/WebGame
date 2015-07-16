@@ -14,6 +14,17 @@ class Model {
 		return MySql::findOne("SELECT * FROM {$this->table} WHERE id=$id LIMIT 1");
 	}
 
+	public function findAll($conds = []) {
+		$where = [];
+		foreach ($conds as $key => $value) {
+			$where[] = $key.'='.$value;
+		}
+		if (count($where)) {
+			$where = ' WHERE ' . implode(' AND ', $where);
+		}
+		return MySql::find("SELECT * FROM {$this->table}" . $where);
+	}
+
 	public function create($objArr) {
 		$cols = [];
 		$vals = [];

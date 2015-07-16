@@ -1,0 +1,27 @@
+#world-list {
+	max-width: 1256px;
+}
+
+.world-item {
+	width: 45%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	margin-bottom: 5%;
+
+	background-color: #33A;
+
+	text-align: center;
+	font-size: 2.5vw;
+	font-color: #EEE;
+
+	height:25vh;
+}
+.world-item:hover {
+	background-color: #AAD;
+}
+.world-item.new-world {
+	background-color: #3A1;
+}
+.world-item.new-world:hover {
+	background-color: #AD8;
+}

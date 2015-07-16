@@ -67,3 +67,63 @@ input[type=number], input.short {
 	background-color: #555555;
 	color: white;
 }
+
+/* Flex attrs */
+div[layout] {
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-flex-direction: column;
+	flex-direction: column;
+
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+div[layout="row"] {
+	-webkit-flex-direction: row;
+	flex-direction: row;	
+}
+div[flex-wrap] {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;	
+}
+/* Alignment */
+div[layout-algin="center"] {
+	-webkit-align-items: center;
+	align-items: center;
+}
+div[layout-algin="start"] {
+	-webkit-align-items: flex-start;
+	align-items: flex-start;
+}
+div[layout-algin="end"] {
+	-webkit-align-items: flex-end;
+	align-items: flex-end;
+}
+div[layout-algin="stretch"] {
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+/* Justification */
+div[layout-just="center"] {
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+div[layout-just="space-between"] {
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+div[layout-just="space-around"] {
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+}
+div[layout-just="start"] {
+	-webkit-justify-content: flex-start;
+	justify-content: flex-start;
+}
+div[layout-just="end"] {
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+}

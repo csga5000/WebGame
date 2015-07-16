@@ -15,3 +15,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 SQL;
+
+MySql::$updates[] = 
+<<< SQL
+CREATE TABLE `worlds` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NOT NULL,
+	`name` VARCHAR(50) NOT NULL DEFAULT 'Hello',
+	`value` TEXT NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+SQL;

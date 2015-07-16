@@ -4,22 +4,23 @@ session_start();
 
 require_once('config/config.php');
 
-$response = [
-	'success' => false,
-	'message' => 'Unknown error',
-	'warn' => false
-];
+$response = [];
 
-function load(){
+function load($request){
+	global $response;
+	$response = [
+		'success' => false,
+		'message' => 'Unknown error',
+		'warn' => false,
+		'data' => []
+	];
+
 	global $config;
 
-	global $response;
 	global $name;
-
-	$request = $GLOBALS['_' . $_SERVER['REQUEST_METHOD']];
 	
 	if (!array_key_exists('controller',$request) || !array_key_exists('action',$request)) {
-		$response['message'] = 'Post data missing controller or action!';
+		$response['message'] = 'Data missing controller or action!';
 		return $response;
 	}
 
@@ -30,7 +31,5 @@ function load(){
 
 	$controller = 'com\\csga5000\\WebGameLib\\' . $controller;
 	$controller = new $controller($name,$action,$request);
-
 	return $response;
 }
-die(json_encode(load()));
