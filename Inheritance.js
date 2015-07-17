@@ -17,9 +17,7 @@ Mammal.prototype.inheritable = function(){
 	console.log("I am not a child!");
 }
 
-function Cat() {
-
-}
+function Cat(){}
 
 //This is "Cat extends Mammal"
 Cat.prototype = new Mammal();

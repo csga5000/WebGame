@@ -1,5 +1,4 @@
-function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, description, state 
-	
+function GameObj(x, y, tile, opts) { //whats opts?
 	//Private Varables - exist in every object perminately
 	//Ned, these were "static".  Javascript doesn't have a static keyword, to do static you do GameObj.X = val; after the GameObj declaration;
 	//Even so, I don't understand why you would want static.  My guess is you wanted private?  Which this does
@@ -8,6 +7,7 @@ function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, desc
 	var Map_ID = 0; 	//Used for multiple maps
 
 	//Public Variables
+	this.type = tile.type;  //lets keep this public, so a switch on another object could change it's type.
 	this.id = GameObj.next_id;
 	this.canOccupy = true;
 	this.tile = tile;		
@@ -15,7 +15,6 @@ function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, desc
 	this.name = tile.name;
 	this.image = tile.image;
 	this.bg_image = tile.bg_image;
-	this.type = tile.type;  
 	this.description = tile.description;
 	this.state = '0';
 	this.element = 0;		//What's this?
@@ -24,17 +23,20 @@ function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, desc
 	this.getX = function(){ return X; }
 	this.getY = function(){ return Y; }
 	this.getMap_ID = function(){ return Map_ID; }
-	
+	this.getType = function(){ return type; }
+
 	//Setters (for acces to the class from outside of an instance of the class)
 	this.changeState = function(state) { this.state = state; }
 	this.changeCanOccupy = function(tf){ this.canOccupy = tf; }
+	this.changeX = function(num){ /*change X value by num(ex. -2), but has to account for running into another object.*/}
+	this.changeY = function(num){ /*change Y value by num(ex. +2), but has to account for running into another object.*/}
 
 	//Other Public Functions_____________________________
 	this.update = function() {
 		this.updateElement();
 	}
 	
-	this.updateElement = function() { 
+	this.updateElement = function() {  //What does this do? 
 		var obj = $('#obj_' + this.id);
 		obj.css('left',x*GameObj.TILE_SIZE + 'px');
 		obj.css('top',y*GameObj.TILE_SIZE + 'px');
@@ -55,18 +57,18 @@ GameObj.constructor2 = function(obj){
 	
 	GameObj.next_id++; 
 	
-	switch(this.type) {
+	switch(obj.type) {
 		case TYPE_DOOR:
-			doorify(this);
+			doorify(obj);
 			break;
 		case TYPE_PORTAL:
-			portalize(this);
+			portalize(obj);
 			break;
 		case TYPE_WALL:
-			wallify(this);
+			wallify(obj);
 			break;
 		case TYPE_SWITCH:
-			switchify(this);
+			switchify(obj);
 			break;
 	}//end constructor2
 
@@ -78,12 +80,10 @@ GameObj.prototype.addDescription = function(description){
 }
 
 GameObj.prototype.wallify = function(){
-	this.type = TYPE_WALL;
 	canOccupy = false;
 }//end wallify
 
 GameObj.prototype.doorify = function(){
-	this.type = TYPE_DOOR;
 	this.state = 'c'; //closed by default
 	this.open = function(action){
 		switch (action){
@@ -104,7 +104,7 @@ GameObj.prototype.doorify = function(){
 	}
 }//end doorify
 
-GameObj.switchify = function(){
+GameObj.prototype.switchify = function(){
 	//something that changes other GameObjs 
 }
 
@@ -137,7 +137,7 @@ GameObj.TILE_SIZE = 32;
 /*
  * For use in displaying obj txt
  */
-GameObj.a_or_an = function(word){		//limited use so far, with state of objs
+GameObj.a_or_an = function(word){		//limited use so far, for descriptions
 	var c = word.charAt(0);
 	if (isNaN(c)){	//if "not a number"
 		switch(c) {
