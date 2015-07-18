@@ -15,8 +15,14 @@
 			'Viewport',
 			'add_tile',
 			'Tile',
-			'GameObj',
-			'Game',
+			'Game/Vector',
+			'Game/Objs/GameObj',
+			'Game/Objs/TileObj',
+			'Game/Objs/DoorObj',
+			'Game/Objs/PortalObj',
+			'Game/Objs/DynamicObj',
+			'Game/Objs/PlayerObj',
+			'Game/Game',
 			'index'
 		],
 		'css' => ['game']

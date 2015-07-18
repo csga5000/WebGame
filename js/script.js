@@ -1,3 +1,11 @@
+Object.newInstanceFromClassname = function(name) {
+	classFunc = eval(name);
+	if (typeof(classFunc) !== 'function')
+		return -1;
+	
+	return new (Function.prototype.bind.apply(classFunc, arguments));
+}
+
 function crossBrowserCSS(elem, attr, value) {
 	elem.css(attr,value);
 	elem.css('-ms-'+attr,value);

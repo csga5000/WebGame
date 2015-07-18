@@ -23,7 +23,8 @@ function Tile()
 }
 Tile.next_id = 0;
 
-Tile.TYPE_DOOR = 1;
-Tile.TYPE_WALL = 4;
-Tile.TYPE_PORTAL = 2;
-Tile.TYPE_INTERACTABLE = 3;
+Tile.TYPE_DOOR = 'Door';
+Tile.TYPE_WALL = 'Wall';
+Tile.TYPE_PORTAL = 'Portal';
+Tile.TYPE_INTERACTABLE = 'Interactable';
+Tile.TYPE_PLAYER = 'Player';

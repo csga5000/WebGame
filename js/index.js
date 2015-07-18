@@ -256,7 +256,7 @@ function submitLevel()
 
 	$.each(maptiles, function(y,row){
 		$.each(row,function(x, obj){
-			var gobj = new GameObj(x,y, tiles[obj.tile_id], obj);
+			var gobj = gameObjFromTile(tiles[obj.tile_id], x, y, obj);
 
 			game.addObj(gobj);
 
