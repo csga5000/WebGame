@@ -4,11 +4,14 @@ function Game()
 }
 
 Game.prototype.start = function() {
-		this.update();
-		setInterval(updateGame,15);//Called every 15 miliseconds, so 66 times a second
-	}
+	this.update(0.0001);
+	var gameobj = this;
+	setInterval(function(){
+		gameobj.update(15/1000);
+	},15);//Called every 15 miliseconds, so 66 times a second
+}
 
-Game.prototype.update = function(detla) {
+Game.prototype.update = function(delta) {
 	this.objs.forEach(function(obj){
 		obj.update(delta);
 	});
@@ -17,10 +20,4 @@ Game.prototype.update = function(detla) {
 Game.prototype.addObj = function(obj) {
 	this.objs.push(obj);
 	obj.game = this;
-}
-
-function updateGame()
-{
-	//TODO: calculate delta
-	game.update(0.01);
 }

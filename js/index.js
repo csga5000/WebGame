@@ -260,7 +260,7 @@ function submitLevel()
 
 			game.addObj(gobj);
 
-			$('body').append(GameObj.htmlForObj(gobj));
+			$('body').append(gobj.htmlForObj());
 		});
 	});
 

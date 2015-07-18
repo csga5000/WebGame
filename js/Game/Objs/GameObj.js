@@ -1,5 +1,4 @@
 function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, description, state
-
 	//Private Varables - exist in every object perminately
 	this.loc = new Vector(x, y);
 	this.map_id = 0; 	//Used for multiple maps
@@ -53,12 +52,12 @@ function portalize(obj, portalDestination){
 
 
 //Set class methods/variables (static)
-GameObj.htmlForObj = function(obj) {
+GameObj.prototype.htmlForObj = function() {
 	var div = $('<div class="game_obj"></div>');
-	div.attr('id','obj_'+obj.id);
+	div.attr('id','obj_'+this.id);
 	div.css('width',GameObj.TILE_SIZE);
 	div.css('height',GameObj.TILE_SIZE);
-	div.html(obj.tile.getImageDiv());
+	div.html(this.tile.getImageDiv());
 	return div;
 }
 
