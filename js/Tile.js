@@ -1,3 +1,4 @@
+//add portalDestination, state
 function Tile()
 {
 	this.name = "";
@@ -26,5 +27,6 @@ Tile.next_id = 0;
 Tile.TYPE_DOOR = 'Door';
 Tile.TYPE_WALL = 'Wall';
 Tile.TYPE_PORTAL = 'Portal';
+Tile.TYPE_SWITCH = 'Switch';
 Tile.TYPE_INTERACTABLE = 'Interactable';
 Tile.TYPE_PLAYER = 'Player';

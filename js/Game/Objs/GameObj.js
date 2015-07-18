@@ -31,6 +31,8 @@ function GameObj(x, y, tile, opts) { //whats opts? //add portalDestination, desc
 	// };
 }
 
+GameObj.prototype.getType = function(){ return this.tile.type; }
+
 //Other Public Functions_____________________________
 GameObj.prototype.update = function(delta) {
 	this.updateElement();
