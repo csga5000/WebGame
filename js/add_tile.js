@@ -4,6 +4,12 @@ $('#createObjectModal').ready(function(){
 	$('#tile_type_table').find('td').click(populateImageTable);
 
 	$($('#tile_type_table').find('td')[0]).click();
+
+	var tts = $('#tyle-type-select');
+
+	Tile.TYPE_NAMES.forEach(function(type, index){
+		tts.append($('<option>').attr('value',index).html(type));
+	});
 });
 
 //Image Elemnts

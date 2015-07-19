@@ -29,11 +29,14 @@
 						</div>
 						<br>
 						<div class="bg_fg_tile">
-							<img id="objectCreationBgImage" src="mapImages/blank/blank0.png" alt="blank">
-							<img id="objectCreationImage" src="mapImages/blank/blank0.png" alt="blank">
+							<img id="objectCreationBgImage" src="mapImages/Blank/blank0.png" alt="blank">
+							<img id="objectCreationImage" src="mapImages/Blank/blank0.png" alt="blank">
 						</div>
 						<br>
-						drop down type select
+						<label>Type:</label>
+						<br>
+						<select id="tyle-type-select">
+						</select>
 						<br>
 						if portal, where to.
 						<br>

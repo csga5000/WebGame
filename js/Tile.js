@@ -1,10 +1,10 @@
 //add portalDestination, state
-function Tile()
+function Tile(type)
 {
 	this.name = "";
 	this.image = null;
 	this.bg_image = null;
-	this.type = Tile.TYPE_PLAYER;
+	this.type = type;
 	this.description = "";
 
 	this.id = Tile.next_id;
@@ -24,9 +24,17 @@ function Tile()
 }
 Tile.next_id = 0;
 
-Tile.TYPE_DOOR = 'Door';
-Tile.TYPE_WALL = 'Wall';
-Tile.TYPE_PORTAL = 'Portal';
-Tile.TYPE_SWITCH = 'Switch';
-Tile.TYPE_INTERACTABLE = 'Interactable';
-Tile.TYPE_PLAYER = 'Player';
+Tile.TYPE_DOOR = 0;
+Tile.TYPE_WALL = 1;
+Tile.TYPE_PORTAL = 2;
+Tile.TYPE_SWITCH = 3;
+Tile.TYPE_INTERACTABLE = 4;
+Tile.TYPE_PLAYER = 5;
+
+Tile.TYPE_NAMES = [];
+Tile.TYPE_NAMES[Tile.TYPE_DOOR] = 'Door';
+Tile.TYPE_NAMES[Tile.TYPE_WALL] = 'Wall';
+Tile.TYPE_NAMES[Tile.TYPE_PORTAL] = 'Portal';
+Tile.TYPE_NAMES[Tile.TYPE_SWITCH] = 'Switch';
+Tile.TYPE_NAMES[Tile.TYPE_INTERACTABLE] = 'Interactable';
+Tile.TYPE_NAMES[Tile.TYPE_PLAYER] = 'Player';

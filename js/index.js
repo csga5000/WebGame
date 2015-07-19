@@ -26,9 +26,9 @@ $(document).ready(function(){
 	window.onkeyup = keyUp;
 
 	$('#saveNewTile').click(function() {
-		var tile = new Tile();
-
 		var modal = $('#createObjectModal');
+
+		var tile = new Tile(Number($('#tyle-type-select').val()));
 
 		tilename = modal.find('[name="tile_name"]');
 		imgname = modal.find('[name="image_url"]');
@@ -237,8 +237,6 @@ function submitLevel()
 
 	game = new Game();
 
-	console.log(maptiles);
-
 	/*
 	3 & 2 are y coords,
 	2 & 6 are x coords
@@ -280,6 +278,9 @@ function submitLevel()
 
 function backButton() {
 	$('body').html(mapMaker);
+
+	game.stop();
+	game = null;
 }
 
 function keyDown(event) {

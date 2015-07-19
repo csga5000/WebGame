@@ -13,7 +13,7 @@ textarea {
 	text-align: left;
 }
 
-input[type=text], input[type=number], input[type=email], input[type=password] {
+select, input[type=text], input[type=number], input[type=email], input[type=password] {
 	padding:5px 15px 5px 15px;
 	background-color: #555555;
 	border: 2px solid #000000;
@@ -23,6 +23,15 @@ input[type=text], input[type=number], input[type=email], input[type=password] {
 input[type=number], input.short {
 	width: 70px;
 	padding-right:5px;
+}
+
+select {
+	padding: 5px;
+}
+
+option {
+	background-color: #101015;
+	color: #9090A2;
 }
 
 /** Styling for Buttons **/

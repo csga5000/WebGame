@@ -15,6 +15,7 @@
 			'Viewport',
 			'add_tile',
 			'Tile',
+			'Game/InputManager',
 			'Game/Vector',
 			'Game/Objs/GameObj',
 			'Game/Objs/TileObj',
@@ -35,7 +36,7 @@ function select() {
 	$(this).css("background-color", "#8888FF");
 }
 $(document).ready(function(){
-	$("#table1 td").click(select); 
+	$("#table1 td").click(select);
 })
 </script>
 

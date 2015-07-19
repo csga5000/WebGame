@@ -1,5 +1,5 @@
 function gameObjFromTile(tile, x, y, opts) {
-	var classname = tile.type+'Obj';
+	var classname = Tile.TYPE_NAMES[tile.type]+'Obj';
 	return Object.newInstanceFromClassname(classname, x, y, tile, opts);
 }
 
