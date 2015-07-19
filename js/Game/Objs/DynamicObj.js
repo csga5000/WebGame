@@ -45,9 +45,16 @@ DynamicObj.prototype.update = function(delta) {
 	//Calulate how much we should move
 	var mv = this.vel.cpy().mul(delta, delta);
 
+	var objthis = this;
 
-
-	this.move(mv.x, mv.y);
+	this.move(mv.x, mv.y, function(){
+		//Collision x
+		objthis.vel.x = 0;
+	},
+	function(){
+		//Collision y
+		objthis.vel.y = 0;
+	});
 	//this.loc.add(mv);
 	//TODO: Collision detection
 
@@ -58,8 +65,7 @@ DynamicObj.prototype.update = function(delta) {
 /**
 	If object 2 is solid, and object1 is overlapping object 2, it moves object 1 in reverse direction of the may it "moved" as specified
 */
-DynamicObj.prototype.move = function(mhor, mver){
-	var i;
+DynamicObj.prototype.move = function(mhor, mver, colx, coly){
 	var vdir = mver === 0 ? 0 : Math.abs(mver)/mver;//-1, 0, or 1 for direction
 	var hdir = mhor === 0 ? 0 : Math.abs(mhor)/mhor;//-1, 0, or 1 for direction
 
@@ -82,6 +88,9 @@ DynamicObj.prototype.move = function(mhor, mver){
 			cols = this.collisions();
 
 			if (cols.length > 0) {
+				if (typeof(colx) !== 'undefined')
+					colx(cols);
+
 				mhor = 0;
 
 				var min = this.loc.x;
@@ -116,6 +125,8 @@ DynamicObj.prototype.move = function(mhor, mver){
 			cols = this.collisions();
 
 			if (cols.length > 0) {
+				if (typeof(coly) !== 'undefined')
+					coly(cols);
 				mver = 0;
 
 				var min = this.loc.y;
