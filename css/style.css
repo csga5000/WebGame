@@ -87,14 +87,15 @@ td {
 }
 
 .bg_fg_tile {
-	border: inset #8888FF;
 	position:relative;
 	width: 90px;
 	height: 90px;
 	top:0px;
 	left:0px;
 }
-
+.bg_fg_tile:focus{
+	border: inset #8888FF;
+}
 .bg_fg_tile img {
 	position: absolute;
 	top:0px;

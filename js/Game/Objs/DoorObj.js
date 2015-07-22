@@ -8,7 +8,7 @@ function DoorObj(x, y, tile, opts) {
 //Extend GameObj
 DoorObj.prototype = Object.create(GameObj.prototype);
 
-DoorObj.prototype.open = function(action) {
+DoorObj.prototype.toggleOpen = function(action) {
 	if (this.isLocked)
 		return;
 

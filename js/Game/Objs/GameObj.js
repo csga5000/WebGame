@@ -35,7 +35,7 @@ GameObj.prototype.getType = function(){ return this.tile.type; }
 
 //Other Public Functions_____________________________
 GameObj.prototype.update = function(delta) {
-	this.updateElement();
+	
 }
 
 GameObj.prototype.updateElement = function() {

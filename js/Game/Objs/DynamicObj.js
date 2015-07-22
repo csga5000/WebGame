@@ -59,6 +59,7 @@ DynamicObj.prototype.update = function(delta) {
 	//TODO: Collision detection
 
 	//Updates the HTML element
+	this.updateElement();
 	GameObj.prototype.update.call(this, delta);
 }
 

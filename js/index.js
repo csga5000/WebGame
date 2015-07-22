@@ -46,8 +46,8 @@ $(document).ready(function(){
 		bgimgname.val('');
 		desc.val('');
 
-		$('#objectCreationBgImage').attr('src','mapImages/blank/blank0.png');
-		$('#objectCreationImage').attr('src','mapImages/blank/blank0.png');
+		$('#objectCreationBgImage').attr('src','mapImages/Blank/blank0.png');
+		$('#objectCreationImage').attr('src','mapImages/Blank/blank0.png');
 
 		addTile(tile);
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
 	$('[name="image_url"]').blur(function(){
 		var val = $(this).val();
 		if (val == '') {
-			val = 'mapImages/blank/blank0.png';
+			val = 'mapImages/Blank/blank0.png';
 		}
 		$('#objectCreationImage').attr('src',val);
 	});
@@ -65,7 +65,7 @@ $(document).ready(function(){
 	$('[name="bg_image_url"]').blur(function(){
 		var val = $(this).val();
 		if (val == '') {
-			val = 'mapImages/blank/blank0.png';
+			val = 'mapImages/Blank/blank0.png';
 		}
 		$('#objectCreationBgImage').attr('src',val);
 	});
