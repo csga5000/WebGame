@@ -96,26 +96,46 @@ $(document).ready(function(){
 		var dat = $('#loadModal textarea').val();
 
 		var obj = JSON.parse(dat);
-		
-		var dat = {
-			viewport:{
-				w:w,
-				h:h,
-				cust_tsize:cust_tsize,
-				mapsize:mapsize,
-			},
-			tiles:tiles,
-			map:{
-				0:{
-					0:{tile_id:0, rotation:"90"},
-					1:{tile}
-				}
+
+		for (var key in obj.viewport) {
+			viewport[key] = obj.viewport[key];
+		}
+
+		$('#mapW').val(obj.viewport.x);
+		$('#mapH').val(obj.viewport.y);
+		//$('#resizeViewport').val(obj.viewport.);
+
+		/*
+		"map":{"2":
+			{"0":{"tile_id":"0","rotation":""}},
+			"3":{"7":{"tile_id":"0","rotation":""}}}
+		*/
+
+		$('#tile_list').html('');
+
+		this.tiles = [];
+
+		//Add tiles
+		obj.tiles.forEach(function(tile){
+			//Create a new instance of Tile class
+			var ntile = new Tile();
+
+			//Copy ever field from tile obj to Tile instance
+			for (key in tile)
+				ntile[key] = tile[key];
+
+			//Save the tile instance
+			addTile(ntile);
+		});
+
+		for (y in obj.map) {
+			for (x in obj.map[y]) {
+				var sobj = obj.map[y][x];
+				console.log(sobj);
+				setTileAtPos($('[x="'+x+'"][y="'+y+'"]'), tiles[sobj.tile_id], sobj.rotation);
 			}
-		};
+		}
 
-		w = obj.viewport.w;
-
-		this.tiles = obj.tiles;
 	});
 
 	$("#resize").click(function(){
@@ -145,13 +165,9 @@ function getMapObjects()
 		if (!elem.attr('tile-id'))
 			return;
 
-		var rotation = elem.css('transform').substr();
-		var start = rotation.indexOf('(');
-		rotation = rotation.substr(start+1,rotation.indexOf('d')-start);
-
 		var obj = {
-			tile_id:elem.attr('tile-id'),
-			rotation:rotation
+			tile_id:Number(elem.attr('tile-id')),
+			rotation:Number(elem.attr('rotation'))
 		};
 
 		var y = elem.attr('y');
@@ -210,15 +226,20 @@ function mapTileClicked() {
 	setTileAtPos($(this), selectedTile);
 }
 
-function setTileAtPos(elem, tile) {
-	if (typeof(selectedTile) === 'undefined')
+function setTileAtPos(elem, tile, rotation) {
+	if (typeof(tile) === 'undefined')
+		tile = selectedTile;
+	if (typeof(tile) === 'undefined')
 		return;
 
-	elem.attr('tile-id',selectedTile.id);
+	elem.attr('tile-id',tile.id);
 
-	elem.html(selectedTile.getImageDiv());
+	elem.html(tile.getImageDiv());
 
-	crossBrowserCSS(elem,'transform','rotate('+currentRotation+'deg)');
+	rotation = typeof(rotation) === 'undefined' ? currentRotation : rotation;
+
+	crossBrowserCSS(elem,'transform','rotate('+rotation+'deg)');
+	elem.attr('rotation', rotation);
 }
 
 
